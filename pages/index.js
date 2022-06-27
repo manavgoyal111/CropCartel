@@ -27,6 +27,12 @@ const Home = () => {
 							Wear whatever you want? Whenever you want? Wear the
 							saree with style?
 						</p>
+						<p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Eveniet repudiandae quaerat sunt ducimus
+							explicabo maiores iste aliquam totam voluptatem
+							tenetur.
+						</p>
 					</div>
 					<div className="flex flex-wrap -m-4">
 						<div className="xl:w-1/3 md:w-1/2 p-4">

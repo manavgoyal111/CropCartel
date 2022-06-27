@@ -31,21 +31,21 @@ const Post = () => {
 			</Head>
 
 			<section className="text-gray-600 body-font overflow-hidden">
-				<div className="container px-5 py-10 mx-auto">
-					<div className="lg:w-4/5 mx-auto flex flex-wrap">
+				<div className="container px-5 py-16 mx-auto">
+					<div className="lg:w-11/12 mx-auto flex flex-wrap justify-center">
 						<Image
 							alt="product"
-							className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-top rounded"
-							src="https://5.imimg.com/data5/SELLER/Default/2020/8/NO/PH/VM/36740565/hoodie-printing-with-hoodies-500x500.jpeg"
-							height={350}
-							width={350}
+							className="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded"
+							src="https://res.cloudinary.com/teepublic/image/private/s--dOY4dh9o--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_470/c_crop,g_north_west,h_626,w_470,x_0,y_-30/g_north_west,u_upload:v1462829024:production:blanks:a59x1cgomgu5lprfjlmi,x_-395,y_-355/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1574781317/production/designs/6903362_0.jpg"
+							height={400}
+							width={500}
 						/>
-						<div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+						<div className="lg:w-1/2 w-full lg:pl-16 lg:py-6 mt-6 lg:mt-0">
 							<h2 className="text-sm title-font text-gray-500 tracking-widest">
-								CODESWEAR
+								SAREEWEAR
 							</h2>
 							<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-								Wear the code
+								Wear the saree (XL/Blue)
 							</h1>
 							<div className="flex mb-4">
 								<span className="flex items-center">
@@ -55,7 +55,7 @@ const Post = () => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-indigo-500"
+										className="w-4 h-4 text-pink-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -66,7 +66,7 @@ const Post = () => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-indigo-500"
+										className="w-4 h-4 text-pink-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -77,7 +77,7 @@ const Post = () => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-indigo-500"
+										className="w-4 h-4 text-pink-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -88,7 +88,7 @@ const Post = () => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-indigo-500"
+										className="w-4 h-4 text-pink-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -99,7 +99,7 @@ const Post = () => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-indigo-500"
+										className="w-4 h-4 text-pink-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -162,12 +162,12 @@ const Post = () => {
 									<span className="mr-3">Color</span>
 									<button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
 									<button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-									<button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
+									<button className="border-2 border-gray-300 ml-1 bg-pink-500 rounded-full w-6 h-6 focus:outline-none"></button>
 								</div>
 								<div className="flex ml-6 items-center">
 									<span className="mr-3">Size</span>
 									<div className="relative">
-										<select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+										<select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
 											<option>SM</option>
 											<option>M</option>
 											<option>L</option>
@@ -193,7 +193,10 @@ const Post = () => {
 								<span className="title-font font-medium text-2xl text-gray-900">
 									₹499.00
 								</span>
-								<button className="flex ml-14 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+								<button className="flex ml-8 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded">
+									Buy Now
+								</button>
+								<button className="flex ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded">
 									Add to Cart
 								</button>
 								<button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -209,7 +212,7 @@ const Post = () => {
 									</svg>
 								</button>
 							</div>
-							<div className="pincode mt-6 flex space-x-2 text-sm">
+							<div className="pin mt-6 flex space-x-2 text-sm">
 								<input
 									type="text"
 									onChange={onChangePin}
@@ -218,14 +221,14 @@ const Post = () => {
 								/>
 								<button
 									onClick={checkServiceability}
-									className="flex ml-14 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+									className="text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded"
 								>
 									Check
 								</button>
 							</div>
 							{!service && service != null && (
 								<div className="text-red-600 mt-3 text-sm">
-									Sorry! We do not deliver to this pincode
+									Sorry! We do not deliver to this pincode yet
 								</div>
 							)}
 							{service && service != null && (
