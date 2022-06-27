@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -104,7 +104,9 @@ const Post = () => {
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
 									</svg>
-									<span className="text-gray-600 ml-3">4 Reviews</span>
+									<span className="text-gray-600 ml-3">
+										4 Reviews
+									</span>
 								</span>
 								<span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
 									<a className="text-gray-500">
@@ -146,11 +148,13 @@ const Post = () => {
 								</span>
 							</div>
 							<p className="leading-relaxed">
-								Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-								sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-								juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-								seitan poutine tumeric. Gastropub blue bottle austin listicle
-								pour-over, neutra jean shorts keytar banjo tattooed umami
+								Fam locavore kickstarter distillery. Mixtape
+								chillwave tumeric sriracha taximy chia
+								microdosing tilde DIY. XOXO fam indxgo
+								juiceramps cornhole raw denim forage brooklyn.
+								Everyday carry +1 seitan poutine tumeric.
+								Gastropub blue bottle austin listicle pour-over,
+								neutra jean shorts keytar banjo tattooed umami
 								cardigan.
 							</p>
 							<div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">

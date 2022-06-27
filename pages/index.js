@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 
-export default function Home() {
+const Home = () => {
 	return (
 		<div className="">
 			<Head>
@@ -181,4 +181,6 @@ export default function Home() {
 			</section>
 		</div>
 	);
-}
+};
+
+export default Home;

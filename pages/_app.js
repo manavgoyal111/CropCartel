@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../styles/globals.css";
+import "../styles/utilities.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
 	const [cart, setCart] = useState({});
 	const [subTotal, setSubTotal] = useState(0);
 
@@ -70,6 +71,6 @@ function MyApp({ Component, pageProps }) {
 			<Footer />
 		</>
 	);
-}
+};
 
 export default MyApp;

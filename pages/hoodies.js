@@ -1,10 +1,9 @@
-import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 
 const Hoodies = () => {
-  return (
+	return (
 		<div>
 			<Head>
 				<title>Hoodies | CodesWear.com - Wear the Code</title>
@@ -194,6 +193,6 @@ const Hoodies = () => {
 			</section>
 		</div>
 	);
-}
+};
 
-export default Hoodies
+export default Hoodies;
