@@ -35,9 +35,9 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 			<nav>
 				<ul className="flex items-center space-x-4 font-bold md:text-md">
-					<Link href="/tshirts">
+					<Link href="/saree">
 						<a>
-							<li>Tshirts</li>
+							<li>Saree</li>
 						</a>
 					</Link>
 					<Link href="/hoodies">
