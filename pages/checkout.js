@@ -192,7 +192,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<span className="font-bold">Subtotal: ₹{subTotal}</span>
 				</div>
 				<div className="mx-4">
-					<Link href="/pay">
+					<Link href="/order">
 						<a>
 							<button className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-sm">
 								Pay ₹{subTotal}
