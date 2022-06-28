@@ -6,7 +6,7 @@ const Signup = () => {
 	return (
 		<div>
 			<Head>
-				<title>Signup | CodesWear.com - Wear the Code</title>
+				<title>Signup | SareeWear</title>
 			</Head>
 
 			<div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

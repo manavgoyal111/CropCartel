@@ -36,22 +36,22 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			<nav>
 				<ul className="flex items-center space-x-4 font-bold md:text-md">
 					<Link href="/saree">
-						<a>
+						<a className="hover:text-gray-800">
 							<li>Saree</li>
 						</a>
 					</Link>
 					<Link href="/hoodies">
-						<a>
+						<a className="hover:text-gray-800">
 							<li>Hoodies</li>
 						</a>
 					</Link>
 					<Link href="/stickers">
-						<a>
+						<a className="hover:text-gray-800">
 							<li>Stickers</li>
 						</a>
 					</Link>
 					<Link href="/mugs">
-						<a>
+						<a className="hover:text-gray-800">
 							<li>Mugs</li>
 						</a>
 					</Link>
@@ -60,13 +60,13 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 			<div className="cart cursor-pointer absolute right-4 top-4 flex">
 				<Link href="/login">
-					<a>
+					<a className="hover:text-gray-800">
 						<MdAccountCircle className="text-xl md:text-2xl mx-2" />
 					</a>
 				</Link>
 				<AiOutlineShoppingCart
 					onClick={toggleCart}
-					className="text-xl md:text-2xl"
+					className="text-xl md:text-2xl hover:text-gray-800"
 				/>
 			</div>
 
@@ -96,7 +96,8 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 							<li key={idx}>
 								<div className="item flex my-5">
 									<div className="w-2/3 font-semibold">
-										{cart[k].name}
+										{cart[k].name} ({cart[k].size}/
+										{cart[k].variant})
 									</div>
 									<div className="flex items-center justify-center w-1/3 font-semibold text-lg">
 										<AiFillMinusCircle

@@ -5,7 +5,7 @@ const Home = () => {
 	return (
 		<div className="">
 			<Head>
-				<title>SareeWear.com - Wear the Saree</title>
+				<title>SareeWear - Wear the Saree</title>
 				<meta
 					name="description"
 					content="sareewear.com - Wear the Saree."

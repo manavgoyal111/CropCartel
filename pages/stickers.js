@@ -6,7 +6,7 @@ const Stickers = () => {
 	return (
 		<div>
 			<Head>
-				<title>Stickers | CodesWear.com - Wear the Code</title>
+				<title>Stickers | SareeWear</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">

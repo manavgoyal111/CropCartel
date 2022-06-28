@@ -6,7 +6,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	return (
 		<div>
 			<Head>
-				<title>Checkout | CodesWear.com - Wear the Code</title>
+				<title>Checkout | SareeWear</title>
 			</Head>
 
 			<div className="container sm:m-auto px-2 md:w-10/12">

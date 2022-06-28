@@ -5,7 +5,7 @@ const Order = () => {
 	return (
 		<div>
 			<Head>
-				<title>Order | CodesWear.com - Wear the Code</title>
+				<title>Order | SareeWear</title>
 			</Head>
 
 			<section className="text-gray-600 body-font overflow-hidden">

@@ -6,7 +6,7 @@ const Mugs = () => {
 	return (
 		<div>
 			<Head>
-				<title>Mugs | CodesWear.com - Wear the Code</title>
+				<title>Mugs | SareeWear</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">

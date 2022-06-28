@@ -36,7 +36,7 @@ const Post = ({ addToCart, product, variants }) => {
 	return (
 		<div>
 			<Head>
-				<title>Products | CodesWear.com - Wear the Code</title>
+				<title>Product | SareeWear</title>
 			</Head>
 
 			<section className="text-gray-600 body-font overflow-hidden">
@@ -45,7 +45,7 @@ const Post = ({ addToCart, product, variants }) => {
 						<Image
 							alt="product"
 							className="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded"
-							src="https://res.cloudinary.com/teepublic/image/private/s--dOY4dh9o--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_470/c_crop,g_north_west,h_626,w_470,x_0,y_-30/g_north_west,u_upload:v1462829024:production:blanks:a59x1cgomgu5lprfjlmi,x_-395,y_-355/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1574781317/production/designs/6903362_0.jpg"
+							src={product.img}
 							height={400}
 							width={500}
 						/>
@@ -54,9 +54,9 @@ const Post = ({ addToCart, product, variants }) => {
 								SAREEWEAR
 							</h2>
 							<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-								Wear the saree (XL/Blue)
+								{product.title} ({product.size}/{product.color})
 							</h1>
-							<div className="flex mb-4">
+							{/* <div className="flex mb-4">
 								<span className="flex items-center">
 									<svg
 										fill="currentColor"
@@ -155,17 +155,8 @@ const Post = ({ addToCart, product, variants }) => {
 										</svg>
 									</a>
 								</span>
-							</div>
-							<p className="leading-relaxed">
-								Fam locavore kickstarter distillery. Mixtape
-								chillwave tumeric sriracha taximy chia
-								microdosing tilde DIY. XOXO fam indxgo
-								juiceramps cornhole raw denim forage brooklyn.
-								Everyday carry +1 seitan poutine tumeric.
-								Gastropub blue bottle austin listicle pour-over,
-								neutra jean shorts keytar banjo tattooed umami
-								cardigan.
-							</p>
+							</div> */}
+							<p className="leading-relaxed">{product.desc}</p>
 							<div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
 								<div className="flex">
 									<span className="mr-3">Color</span>
@@ -325,16 +316,16 @@ const Post = ({ addToCart, product, variants }) => {
 											slug,
 											1,
 											499,
-											"Wear the Saree",
-											"XL",
-											"Red"
+											product.title,
+											product.size,
+											product.color
 										);
 									}}
 									className="flex ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded"
 								>
 									Add to Cart
 								</button>
-								<button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+								{/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
 									<svg
 										fill="currentColor"
 										strokeLinecap="round"
@@ -345,7 +336,7 @@ const Post = ({ addToCart, product, variants }) => {
 									>
 										<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
 									</svg>
-								</button>
+								</button> */}
 							</div>
 							<div className="pin mt-6 flex space-x-2 text-sm">
 								<input
