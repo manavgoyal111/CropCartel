@@ -125,3 +125,5 @@ const MyApp = ({ Component, pageProps }) => {
 };
 
 export default MyApp;
+
+// Use RazorPay or Instamojo instead of Paytm
