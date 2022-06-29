@@ -4,11 +4,11 @@ import Image from "next/image";
 import mongoose from "mongoose";
 import Product from "../models/Product";
 
-const Saree = ({ products }) => {
+const Kurti = ({ products }) => {
 	return (
 		<div>
 			<Head>
-				<title>Saree | SareeWear</title>
+				<title>Kurti | SareeWear</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">
@@ -16,7 +16,7 @@ const Saree = ({ products }) => {
 					<div className="flex flex-wrap -m-4 justify-center">
 						{Object.keys(products).length === 0 && (
 							<p>
-								Sorry, All the Sarees are currently out of
+								Sorry, All the Kurtis are currently out of
 								stock. New stock coming soon. Stay tuned!
 							</p>
 						)}
@@ -38,7 +38,7 @@ const Saree = ({ products }) => {
 									</a>
 									<div className="mt-4 text-center md:text-left">
 										<h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-											Saree
+											Kurti
 										</h3>
 										<h2 className="text-gray-900 title-font text-lg font-medium">
 											{products[item].title}
@@ -126,34 +126,34 @@ export async function getServerSideProps(context) {
 		await mongoose.connect(process.env.MONGO_URI);
 	}
 
-	let products = await Product.find({ category: "saree" });
-	let sarees = {};
+	let products = await Product.find({ category: "kurti" });
+	let kurtis = {};
 	for (let item of products) {
-		if (item.title in sarees) {
+		if (item.title in kurtis) {
 			if (
-				!sarees[item.title].color.includes(item.color) &&
+				!kurtis[item.title].color.includes(item.color) &&
 				item.availableQty > 0
 			) {
-				sarees[item.title].color.push(item.color);
+				kurtis[item.title].color.push(item.color);
 			}
 			if (
-				!sarees[item.title].size.includes(item.size) &&
+				!kurtis[item.title].size.includes(item.size) &&
 				item.availableQty > 0
 			) {
-				sarees[item.title].size.push(item.size);
+				kurtis[item.title].size.push(item.size);
 			}
 		} else {
-			sarees[item.title] = JSON.parse(JSON.stringify(item));
+			kurtis[item.title] = JSON.parse(JSON.stringify(item));
 			if (item.availableQty > 0) {
-				sarees[item.title].color = [item.color];
-				sarees[item.title].size = [item.size];
+				kurtis[item.title].color = [item.color];
+				kurtis[item.title].size = [item.size];
 			}
 		}
 	}
 
 	return {
-		props: { products: JSON.parse(JSON.stringify(sarees)) },
+		props: { products: JSON.parse(JSON.stringify(kurtis)) },
 	};
 }
 
-export default Saree;
+export default Kurti;

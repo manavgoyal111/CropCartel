@@ -40,19 +40,14 @@ const Navbar = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 							<li>Saree</li>
 						</a>
 					</Link>
-					<Link href="/hoodies">
+					<Link href="/kurti">
 						<a className="hover:text-gray-800">
-							<li>Hoodies</li>
+							<li>Kurti</li>
 						</a>
 					</Link>
-					<Link href="/stickers">
+					<Link href="/cloths">
 						<a className="hover:text-gray-800">
-							<li>Stickers</li>
-						</a>
-					</Link>
-					<Link href="/mugs">
-						<a className="hover:text-gray-800">
-							<li>Mugs</li>
+							<li>Cloths</li>
 						</a>
 					</Link>
 				</ul>
