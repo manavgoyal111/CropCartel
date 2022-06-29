@@ -9,6 +9,8 @@ const MyApp = ({ Component, pageProps }) => {
 
 	const [cart, setCart] = useState({});
 	const [subTotal, setSubTotal] = useState(0);
+	const [user, setUser] = useState({ value: null });
+	const [key, setKey] = useState();
 
 	useEffect(() => {
 		try {
@@ -20,7 +22,12 @@ const MyApp = ({ Component, pageProps }) => {
 			console.log(error);
 			localStorage.clear();
 		}
-	}, []);
+		const token = localStorage.getItem("token");
+		if (token) {
+			setUser({ value: token });
+			setKey(Math.random());
+		}
+	}, [router.query]);
 
 	const saveCart = (myCart) => {
 		localStorage.setItem("cart", JSON.stringify(myCart));
@@ -67,10 +74,18 @@ const MyApp = ({ Component, pageProps }) => {
 		router.push("/checkout");
 	};
 
+	const logout = () => {
+		localStorage.removeItem("token");
+		setUser({ value: null });
+		setKey(Math.random());
+	};
+
 	return (
 		<>
 			<Navbar
-				key={subTotal}
+				key={key}
+				logout={logout}
+				user={user}
 				cart={cart}
 				addToCart={addToCart}
 				removeFromCart={removeFromCart}

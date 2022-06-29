@@ -10,7 +10,7 @@ const Login = () => {
 	const router = useRouter();
 
 	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState();
+	const [password, setPassword] = useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -28,6 +28,7 @@ const Login = () => {
 		setEmail("");
 		setPassword("");
 		if (response.success) {
+			localStorage.setItem("token", response.token);
 			toast.success("Your are logged in!", {
 				position: "top-left",
 				autoClose: 3000,
