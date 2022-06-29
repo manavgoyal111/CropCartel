@@ -1,12 +1,16 @@
-import Product from "../../models/Product";
+import User from "../../models/User";
 import connectDb from "../../middleware/mongoose";
 
 const handler = async (req, res) => {
 	if (req.method == "POST") {
-		
-		res.status(200).json({ success: "Success" });
+		let u = new User(req.body);
+		await u.save();
+		res.status(200).json({ success: true });
 	} else {
-		res.status(400).json({ error: "This method is not allowed" });
+		res.status(400).json({
+			success: false,
+			error: "This method is not allowed",
+		});
 	}
 };
 

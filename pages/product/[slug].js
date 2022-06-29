@@ -59,19 +59,19 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 				<title>Product | SareeWear</title>
 			</Head>
 
-			<section className="text-gray-600 body-font overflow-hidden">
-				<ToastContainer
-					position="bottom-center"
-					autoClose={3000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-				/>
+			<ToastContainer
+				position="bottom-center"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 
+			<section className="text-gray-600 body-font overflow-hidden">
 				<div className="container px-5 py-16 mx-auto">
 					<div className="lg:w-11/12 mx-auto flex flex-wrap justify-center">
 						<Image
