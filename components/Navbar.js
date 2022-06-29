@@ -64,7 +64,7 @@ const Navbar = ({
 			</nav>
 
 			<div className="cart cursor-pointer absolute right-4 top-4 flex items-center">
-				<a
+				<span
 					onMouseOver={() => {
 						setDropdown(true);
 					}}
@@ -80,7 +80,7 @@ const Navbar = ({
 							onMouseLeave={() => {
 								setDropdown(false);
 							}}
-							className="absolute right-8 top-6 rounded-md p-2 w-32 bg-pink-400 text-white"
+							className="absolute right-8 top-6 rounded-md p-2 w-32 bg-white shadow-lg border"
 						>
 							<ul>
 								<Link href="/myaccount">
@@ -109,7 +109,7 @@ const Navbar = ({
 					{user.value && (
 						<MdAccountCircle className="text-xl md:text-2xl mx-2" />
 					)}
-				</a>
+				</span>
 				{!user.value && (
 					<Link href="/login">
 						<a className="hover:text-gray-800">

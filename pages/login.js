@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,10 +12,16 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	useEffect(() => {
+		if (localStorage.getItem("token")) {
+			router.push("/");
+		}
+	}, []);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = { email, password };
-		let res = await fetch("http://localhost:3000/api/login", {
+		let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -39,7 +45,7 @@ const Login = () => {
 				progress: undefined,
 			});
 			setTimeout(() => {
-				router.push("http://localhost:3000");
+				router.push(process.env.NEXT_PUBLIC_HOST);
 			}, 1000);
 		} else {
 			toast.error(response.error, {
@@ -109,7 +115,6 @@ const Login = () => {
 						className="mt-8 space-y-6"
 						method="POST"
 					>
-						<input type="hidden" name="remember" value="true" />
 						<div className="rounded-md shadow-sm -space-y-px">
 							<div>
 								<label htmlFor="email" className="sr-only">
@@ -146,22 +151,6 @@ const Login = () => {
 						</div>
 
 						<div className="flex items-center justify-between">
-							<div className="flex items-center">
-								<input
-									id="remember-me"
-									name="remember-me"
-									type="checkbox"
-									className="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded"
-								/>
-								<label
-									htmlFor="remember-me"
-									className="ml-2 block text-sm text-gray-900"
-								>
-									{" "}
-									Remember me{" "}
-								</label>
-							</div>
-
 							<div className="text-sm">
 								<Link href="/forgot">
 									<a className="font-medium text-pink-600 hover:text-pink-500">
