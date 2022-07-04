@@ -20,6 +20,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			}
 		);
 		let txnRes = await a.json();
+		console.log(a);
 		let txnToken = txnRes.txnToken;
 		console.log(txnToken);
 

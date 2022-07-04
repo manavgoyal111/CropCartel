@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 		paytmParams.body = {
 			requestType: "Payment",
 			mid: process.env.NEXT_PUBLIC_PAYTM_MID,
-			websiteName: "WEBSITE_NAME",
+			websiteName: "YOUR_WEBSITE_NAME",
 			orderId: req.body.oid,
 			callbackUrl: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
 			txnAmount: {
@@ -29,10 +29,10 @@ export default async function handler(req, res) {
 
 		var post_data = JSON.stringify(paytmParams);
 
-		const requestAsync = () => {
+		const requestAsync = async () => {
 			return new Promise((resolve, reject) => {
 				var options = {
-					hostname: "securegw-stage.paytm.in", // For Staging
+					// hostname: "securegw-stage.paytm.in", // For Staging
 					hostname: "securegw.paytm.in", // For Production
 					port: 443,
 					path: `/theia/api/v1/initiateTransaction?mid=${process.env.NEXT_PUBLIC_PAYTM_MID}&orderId=${req.body.oid}`,
@@ -49,7 +49,8 @@ export default async function handler(req, res) {
 						response += chunk;
 					});
 					post_res.on("end", function () {
-						console.log("Response: ", response);
+						console.log("Response: ", JSON.parse(response));
+						// resolve(response);
 						resolve(JSON.parse(response).body);
 					});
 				});
