@@ -5,10 +5,10 @@ const Home = () => {
 	return (
 		<div className="">
 			<Head>
-				<title>SareeWear - Wear the Saree</title>
+				<title>Farmers Market</title>
 				<meta
 					name="description"
-					content="sareewear.com - Wear the Saree."
+					content="Market for Faremrs."
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
