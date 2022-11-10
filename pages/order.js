@@ -1,7 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Order = () => {
+	const router = useRouter();
+
 	return (
 		<div>
 			<Head>
@@ -15,8 +18,8 @@ const Order = () => {
 							<h2 className="text-sm title-font text-gray-500 tracking-widest">
 								SAREEWEAR.COM
 							</h2>
-							<h1 className="text-gray-900 text-3xl title-font font-medium mb-4">
-								Order Id: #837829
+							<h1 className="text-gray-900 text-2xl title-font font-medium mb-4">
+								Order Id: {router.query.id}
 							</h1>
 							<p className="leading-relaxed mb-4">
 								Your order has been successfully placed!
@@ -25,39 +28,25 @@ const Order = () => {
 								<a className="flex-grow py-2 text-lg px-1 text-center">
 									Item Description
 								</a>
-								<a className="flex-grow py-2 text-lg px-1 text-center">
-									Quantity
-								</a>
+								<a className="flex-grow py-2 text-lg px-1 text-center">Quantity</a>
 								<a className="flex-grow py-2 text-lg px-1 text-center">
 									Item Total
 								</a>
 							</div>
 							<div className="flex border-t border-gray-200 py-2">
-								<span className="text-gray-500">
-									Wear the Code (XL)
-								</span>
+								<span className="text-gray-500">Wear the Code (XL)</span>
 								<span className="ml-auto text-gray-900">4</span>
-								<span className="ml-auto text-gray-900">
-									₹366
-								</span>
+								<span className="ml-auto text-gray-900">₹366</span>
 							</div>
 							<div className="flex border-t border-gray-200 py-2">
-								<span className="text-gray-500">
-									Wear the Code (L)
-								</span>
+								<span className="text-gray-500">Wear the Code (L)</span>
 								<span className="ml-auto text-gray-900">2</span>
-								<span className="ml-auto text-gray-900">
-									₹739
-								</span>
+								<span className="ml-auto text-gray-900">₹739</span>
 							</div>
 							<div className="flex border-t border-b mb-6 border-gray-200 py-2">
-								<span className="text-gray-500">
-									Wear the Code (S)
-								</span>
+								<span className="text-gray-500">Wear the Code (S)</span>
 								<span className="ml-auto text-gray-900">4</span>
-								<span className="ml-auto text-gray-900">
-									₹43
-								</span>
+								<span className="ml-auto text-gray-900">₹43</span>
 							</div>
 							<div className="flex flex-col">
 								<span className="title-font font-medium text-2xl text-gray-900">

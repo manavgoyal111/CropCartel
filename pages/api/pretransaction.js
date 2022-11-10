@@ -1,66 +1,43 @@
-const https = require("https");
-const PaytmChecksum = require("paytmchecksum");
+const Razorpay = require("razorpay");
 
 export default async function handler(req, res) {
+	const instance = new Razorpay({
+		key_id: "rzp_test_KuFQeWdckR2Z5I",
+		key_secret: "WulLGjsEY6ITNzjfceIanBCE",
+	});
+	const { orderId, subTotal, payment_capture, razorpay_payment_id } = req.body;
+	console.log(req.body.response);
+	console.log(req.body.subTotal);
+
 	if (req.method == "POST") {
-		var paytmParams = {};
-		paytmParams.body = {
-			requestType: "Payment",
-			mid: process.env.NEXT_PUBLIC_PAYTM_MID,
-			websiteName: "YOUR_WEBSITE_NAME",
-			orderId: req.body.oid,
-			callbackUrl: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
-			txnAmount: {
-				value: req.body.subTotal,
+		try {
+			const options = {
+				amount: 100,
+				// amount: Number(subTotal * 100),
 				currency: "INR",
-			},
-			userInfo: {
-				custId: req.body.email,
-			},
-		};
+				// receipt: orderId,
+				// payment_capture: payment_capture,
+			};
 
-		const checksum = await PaytmChecksum.generateSignature(
-			JSON.stringify(paytmParams.body),
-			process.env.PAYTM_MKEY
-		);
-		paytmParams.head = {
-			signature: checksum,
-		};
-
-		var post_data = JSON.stringify(paytmParams);
-
-		const requestAsync = async () => {
-			return new Promise((resolve, reject) => {
-				var options = {
-					// hostname: "securegw-stage.paytm.in", // For Staging
-					hostname: "securegw.paytm.in", // For Production
-					port: 443,
-					path: `/theia/api/v1/initiateTransaction?mid=${process.env.NEXT_PUBLIC_PAYTM_MID}&orderId=${req.body.oid}`,
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						"Content-Length": post_data.length,
-					},
-				};
-
-				var response = "";
-				var post_req = https.request(options, function (post_res) {
-					post_res.on("data", function (chunk) {
-						response += chunk;
-					});
-					post_res.on("end", function () {
-						console.log("Response: ", JSON.parse(response));
-						// resolve(response);
-						resolve(JSON.parse(response).body);
-					});
-				});
-
-				post_req.write(post_data);
-				post_req.end();
+			const order = await instance.orders.create(options);
+			// console.log(order);
+			if (!order) return res.status(500).send("Some error Occured");
+			res.status(200).json({ success: true, data: order });
+		} catch (err) {
+			return res.status(500).json({
+				message: err,
 			});
-		};
-
-		let myr = await requestAsync();
-		res.status(200).json(myr);
+		}
+	} else if (req.method == "GET") {
+		try {
+			// await instance.payment.fetch(razorpay_payment_id).then((order) => {
+			// 	res.status(200).json({ success: true, data: order });
+			// });
+			res.status(200).json({ key: process.env.NEXT_PUBLIC_PAY_KEY_ID });
+		} catch (err) {
+			return res.status(500).json({
+				message: err,
+			});
+		}
 	}
 }

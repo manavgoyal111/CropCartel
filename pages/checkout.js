@@ -1,55 +1,54 @@
 import Head from "next/head";
-import Link from "next/link";
 import Script from "next/script";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 
 const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	const initiatePayment = async () => {
-		let oid = Math.floor(Math.random() * Date.now());
-
-		// Get a transaction token
-		const data = { cart, subTotal, oid, email: "email" };
-		let a = await fetch(
-			`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			}
-		);
-		let txnRes = await a.json();
-		console.log(a);
-		let txnToken = txnRes.txnToken;
-		console.log(txnToken);
-
-		var config = {
-			root: "",
-			flow: "DEFAULT",
-			data: {
-				orderId: oid,
-				token: txnToken,
-				tokenType: "TXN_TOKEN",
-				amount: subTotal,
+		const orderData = { subTotal };
+		const orderRes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
 			},
-			handler: {
-				notifyMerchant: function (eventName, data) {
-					console.log("notifyMerchant handler function called");
-					console.log("eventName => ", eventName);
-					console.log("data => ", data);
-				},
+			body: JSON.stringify(orderData),
+		});
+		const orderDataRes = await orderRes.json();
+		// console.log(orderDataRes);
+		const { data } = orderDataRes;
+
+		const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const orderKeyRes = await orderKey.json();
+		// console.log(orderKeyRes);
+
+		const options = {
+			key: orderKeyRes,
+			amount: data.amount,
+			currency: "INR",
+			name: "SareeWear",
+			description: "Saree Wear",
+			image: "14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
+			order_id: data.id,
+			callback_url: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
+			prefill: {
+				name: "Manav Goyal",
+				email: "manav.goyal.dev@gmail.com",
+				contact: "9939311111",
+			},
+			notes: {
+				address: "Razorpay Corporate Office",
+			},
+			theme: {
+				color: "#99cc33",
 			},
 		};
 
-		window.Paytm.CheckoutJS.init(config)
-			.then(function onSuccess() {
-				// after successfully updating configuration, invoke JS Checkout
-				window.Paytm.CheckoutJS.invoke();
-			})
-			.catch(function onError(error) {
-				console.log("error => ", error);
-			});
+		var razor = new window.Razorpay(options);
+		razor.open();
 	};
 
 	return (
@@ -65,23 +64,16 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			<Script
 				type="application/javascript"
 				crossorigin="anonymous"
-				src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}
+				src="https://checkout.razorpay.com/v1/checkout.js"
 			/>
 
 			<div className="container sm:m-auto px-2 md:w-10/12">
-				<h1 className="font-bold text-3xl my-8 text-center">
-					Checkout
-				</h1>
-				<h2 className="font-semibold text-xl my-2">
-					1. Delivery Details
-				</h2>
+				<h1 className="font-bold text-3xl my-8 text-center">Checkout</h1>
+				<h2 className="font-semibold text-xl my-2">1. Delivery Details</h2>
 				<div className="mx-auto flex">
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label
-								htmlFor="name"
-								className="leading-7 text-sm text-gray-600"
-							>
+							<label htmlFor="name" className="leading-7 text-sm text-gray-600">
 								Name
 							</label>
 							<input
@@ -94,10 +86,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label
-								htmlFor="email"
-								className="leading-7 text-sm text-gray-600"
-							>
+							<label htmlFor="email" className="leading-7 text-sm text-gray-600">
 								Email
 							</label>
 							<input
@@ -111,10 +100,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				</div>
 				<div className="px-2 w-full">
 					<div className="mb-4">
-						<label
-							htmlFor="address"
-							className="leading-7 text-sm text-gray-600"
-						>
+						<label htmlFor="address" className="leading-7 text-sm text-gray-600">
 							Address
 						</label>
 						<textarea
@@ -129,10 +115,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				<div className="mx-auto flex">
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label
-								htmlFor="phone"
-								className="leading-7 text-sm text-gray-600"
-							>
+							<label htmlFor="phone" className="leading-7 text-sm text-gray-600">
 								Phone
 							</label>
 							<input
@@ -145,10 +128,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label
-								htmlFor="city"
-								className="leading-7 text-sm text-gray-600"
-							>
+							<label htmlFor="city" className="leading-7 text-sm text-gray-600">
 								City
 							</label>
 							<input
@@ -163,10 +143,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				<div className="mx-auto flex">
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label
-								htmlFor="state"
-								className="leading-7 text-sm text-gray-600"
-							>
+							<label htmlFor="state" className="leading-7 text-sm text-gray-600">
 								State
 							</label>
 							<input
@@ -179,10 +156,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label
-								htmlFor="pincode"
-								className="leading-7 text-sm text-gray-600"
-							>
+							<label htmlFor="pincode" className="leading-7 text-sm text-gray-600">
 								Pincode
 							</label>
 							<input
@@ -195,23 +169,18 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 				</div>
 
-				<h2 className="font-semibold text-xl my-2">
-					2. Review Cart Items & Pay
-				</h2>
+				<h2 className="font-semibold text-xl my-2">2. Review Cart Items & Pay</h2>
 				<div className="sideCart bg-pink-100 p-6 m-2 transform z-10">
 					<ol className="list-decimal font-semibold">
 						{Object.keys(cart).length === 0 && (
-							<div className="my-4 font-semibold">
-								Your cart is empty!
-							</div>
+							<div className="my-4 font-semibold">Your cart is empty!</div>
 						)}
 						{Object.keys(cart).map((k, idx) => {
 							return (
 								<li key={idx}>
 									<div className="item flex my-5">
 										<div className="font-semibold">
-											{cart[k].name} ({cart[k].size}/
-											{cart[k].variant})
+											{cart[k].name} ({cart[k].size}/{cart[k].variant})
 										</div>
 										<div className="flex items-center justify-center w-1/3 font-semibold text-lg">
 											<AiFillMinusCircle
@@ -227,9 +196,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 												}}
 												className="cursor-pointer text-pink-500"
 											/>
-											<span className="mx-2 text-sm">
-												{cart[k].qty}
-											</span>
+											<span className="mx-2 text-sm">{cart[k].qty}</span>
 											<AiFillPlusCircle
 												onClick={() => {
 													addToCart(
@@ -252,16 +219,14 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<span className="font-bold">Subtotal: ₹{subTotal}</span>
 				</div>
 				<div className="mx-4">
-					<Link href="/order">
-						<a>
-							<button
-								onClick={initiatePayment}
-								className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-sm"
-							>
-								Pay ₹{subTotal}
-							</button>
-						</a>
-					</Link>
+					{/* <Link href="/order">
+						<a> */}
+					<button
+						onClick={initiatePayment}
+						className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-sm"
+					>
+						Pay ₹{subTotal}
+					</button>
 				</div>
 			</div>
 		</div>
