@@ -59,6 +59,20 @@ const handler = async (req, res) => {
 				}
 
 				// Check if the details are valid
+				if (req.body.phone.length !== 10 || !Number.isInteger(req.body.phone)) {
+					res.status(500).json({
+						success: false,
+						data: "Please enter a 10 digit phone number",
+					});
+					return;
+				}
+				if (req.body.pincode.length !== 6 || !Number.isInteger(req.body.pincode)) {
+					res.status(500).json({
+						success: false,
+						data: "Please enter your 6 digit pincode",
+					});
+					return;
+				}
 
 				// Initiate an Order corresponding to this OrderId
 				let o = new Order({

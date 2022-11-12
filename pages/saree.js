@@ -16,8 +16,8 @@ const Saree = ({ products }) => {
 					<div className="flex flex-wrap -m-4 justify-center">
 						{Object.keys(products).length === 0 && (
 							<p>
-								Sorry, All the Sarees are currently out of
-								stock. New stock coming soon. Stay tuned!
+								Sorry, All the Sarees are currently out of stock. New stock coming
+								soon. Stay tuned!
 							</p>
 						)}
 						{Object.keys(products).map((item) => (
@@ -43,70 +43,48 @@ const Saree = ({ products }) => {
 										<h2 className="text-gray-900 title-font text-lg font-medium">
 											{products[item].title}
 										</h2>
-										<p className="mt-1">
-											₹{products[item].price}
-										</p>
+										<p className="mt-1">₹{products[item].price}</p>
 										<div className="mt-1">
-											{products[item].size.includes(
-												"S"
-											) && (
+											{products[item].size.includes("S") && (
 												<span className="border border-gray-300 px-1 mx-1">
 													S
 												</span>
 											)}
-											{products[item].size.includes(
-												"M"
-											) && (
+											{products[item].size.includes("M") && (
 												<span className="border border-gray-300 px-1 mx-1">
 													M
 												</span>
 											)}
-											{products[item].size.includes(
-												"L"
-											) && (
+											{products[item].size.includes("L") && (
 												<span className="border border-gray-300 px-1 mx-1">
 													L
 												</span>
 											)}
-											{products[item].size.includes(
-												"XL"
-											) && (
+											{products[item].size.includes("XL") && (
 												<span className="border border-gray-300 px-1 mx-1">
 													XL
 												</span>
 											)}
-											{products[item].size.includes(
-												"XXL"
-											) && (
+											{products[item].size.includes("XXL") && (
 												<span className="border border-gray-300 px-1 mx-1">
 													XXL
 												</span>
 											)}
 										</div>
 										<div className="mt-1">
-											{products[item].color.includes(
-												"red"
-											) && (
+											{products[item].color.includes("red") && (
 												<button className="border-2 border-gray-300 bg-red-600 rounded-full w-6 h-6 focus:outline-none"></button>
 											)}
-											{products[item].color.includes(
-												"black"
-											) && (
+											{products[item].color.includes("black") && (
 												<button className="border-2 border-gray-300 bg-black rounded-full w-6 h-6 focus:outline-none"></button>
 											)}
-											{products[item].color.includes(
-												"blue"
-											) && (
+											{products[item].color.includes("blue") && (
 												<button className="border-2 border-gray-300 bg-blue-600 rounded-full w-6 h-6 focus:outline-none"></button>
 											)}
-											{products[item].color.includes(
-												"green"
-											) && (
+											{products[item].color.includes("green") && (
 												<button className="border-2 border-gray-300 bg-green-600 rounded-full w-6 h-6 focus:outline-none"></button>
 											)}
-											{products[item].color.includes(
-												"yellow"
-											) && (
+											{products[item].color.includes("yellow") && (
 												<button className="border-2 border-gray-300 bg-yellow-600 rounded-full w-6 h-6 focus:outline-none"></button>
 											)}
 										</div>
@@ -130,16 +108,10 @@ export async function getServerSideProps(context) {
 	let sarees = {};
 	for (let item of products) {
 		if (item.title in sarees) {
-			if (
-				!sarees[item.title].color.includes(item.color) &&
-				item.availableQty > 0
-			) {
+			if (!sarees[item.title].color.includes(item.color) && item.availableQty > 0) {
 				sarees[item.title].color.push(item.color);
 			}
-			if (
-				!sarees[item.title].size.includes(item.size) &&
-				item.availableQty > 0
-			) {
+			if (!sarees[item.title].size.includes(item.size) && item.availableQty > 0) {
 				sarees[item.title].size.push(item.size);
 			}
 		} else {
@@ -147,6 +119,9 @@ export async function getServerSideProps(context) {
 			if (item.availableQty > 0) {
 				sarees[item.title].color = [item.color];
 				sarees[item.title].size = [item.size];
+			} else {
+				sarees[item.title].color = [];
+				sarees[item.title].size = [];
 			}
 		}
 	}

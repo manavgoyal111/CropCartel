@@ -66,7 +66,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			email.length > 3 &&
 			phone.length > 3 &&
 			address.length > 3 &&
-			pincode.length > 3
+			pincode.length > 3 &&
+			subTotal > 0
 		) {
 			setDisabled(false);
 		} else {
@@ -120,18 +121,29 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			var razor = new window.Razorpay(options);
 			razor.open();
 		} else {
-			console.log("Error: ", data);
 			localStorage.removeItem("cart");
 			clearCart();
-			toast.error(`Error: ${data}`, {
-				position: "top-left",
-				autoClose: 1000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-			});
+			if (data.error) {
+				toast.error(`Error: ${data.error.description}`, {
+					position: "top-left",
+					autoClose: 1000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			} else {
+				toast.error(`Error: ${data}`, {
+					position: "top-left",
+					autoClose: 1000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
 		}
 	};
 
@@ -227,6 +239,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								value={phone}
 								min={0}
 								onChange={handleChange}
+								placeholder="Your 10-Digit Phone Number"
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -267,7 +280,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
 							<label htmlFor="city" className="leading-7 text-sm text-gray-600">
-								City
+								District
 							</label>
 							<input
 								type="text"
