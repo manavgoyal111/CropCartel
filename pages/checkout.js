@@ -1,10 +1,47 @@
+import { useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { BsFillBagCheckFill } from "react-icons/bs";
 
 const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [pincode, setPincode] = useState("");
+	const [address, setAddress] = useState("");
+	const [state, setState] = useState("");
+	const [city, setCity] = useState("");
+	const [disabled, setDisabled] = useState(true);
+
+	const handleChange = (e) => {
+		if (e.target.name == "name") {
+			setName(e.target.value);
+		} else if (e.target.name == "email") {
+			setEmail(e.target.value);
+		} else if (e.target.name == "phone") {
+			setPhone(e.target.value);
+		} else if (e.target.name == "pincode") {
+			setPincode(e.target.value);
+		} else if (e.target.name == "address") {
+			setAddress(e.target.value);
+		}
+
+		if (
+			name.length > 3 &&
+			email.length > 3 &&
+			phone.length > 3 &&
+			address.length > 3 &&
+			pincode.length > 3
+		) {
+			setDisabled(false);
+		} else {
+			setDisabled(true);
+		}
+	};
+
 	const initiatePayment = async () => {
-		const orderData = { subTotal };
+		const orderData = { subTotal, cart, email, name, phone, pincode, address };
 		const orderRes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
 			method: "POST",
 			headers: {
@@ -13,8 +50,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			body: JSON.stringify(orderData),
 		});
 		const orderDataRes = await orderRes.json();
-		// console.log(orderDataRes);
 		const { data } = orderDataRes;
+		console.log(data);
 
 		const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
 			method: "GET",
@@ -23,24 +60,23 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			},
 		});
 		const orderKeyRes = await orderKey.json();
-		// console.log(orderKeyRes);
 
 		const options = {
 			key: orderKeyRes,
 			amount: data.amount,
 			currency: "INR",
 			name: "SareeWear",
-			description: "Saree Wear",
+			description: "Wear a Saree with Style",
 			image: "14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
 			order_id: data.id,
 			callback_url: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
 			prefill: {
-				name: "Manav Goyal",
-				email: "manav.goyal.dev@gmail.com",
-				contact: "9939311111",
+				name: name,
+				email: email,
+				contact: phone,
 			},
 			notes: {
-				address: "Razorpay Corporate Office",
+				address: address,
 			},
 			theme: {
 				color: "#99cc33",
@@ -80,6 +116,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								type="text"
 								id="name"
 								name="name"
+								value={name}
+								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -93,6 +131,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								type="email"
 								id="email"
 								name="email"
+								value={email}
+								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -108,6 +148,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 							name="address"
 							cols="30"
 							rows="2"
+							value={address}
+							onChange={handleChange}
 							className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 						/>
 					</div>
@@ -122,19 +164,23 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								type="number"
 								id="phone"
 								name="phone"
+								value={phone}
+								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label htmlFor="city" className="leading-7 text-sm text-gray-600">
-								City
+							<label htmlFor="pincode" className="leading-7 text-sm text-gray-600">
+								Pincode
 							</label>
 							<input
 								type="text"
-								id="city"
-								name="city"
+								id="pincode"
+								name="pincode"
+								value={pincode}
+								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -150,19 +196,23 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								type="text"
 								id="state"
 								name="state"
+								value={state}
+								readOnly={true}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label htmlFor="pincode" className="leading-7 text-sm text-gray-600">
-								Pincode
+							<label htmlFor="city" className="leading-7 text-sm text-gray-600">
+								City
 							</label>
 							<input
 								type="text"
-								id="pincode"
-								name="pincode"
+								id="city"
+								name="city"
+								value={city}
+								readOnly={true}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -219,12 +269,12 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<span className="font-bold">Subtotal: ₹{subTotal}</span>
 				</div>
 				<div className="mx-4">
-					{/* <Link href="/order">
-						<a> */}
 					<button
 						onClick={initiatePayment}
-						className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-sm"
+						disabled={disabled}
+						className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm disabled:bg-pink-300"
 					>
+						<BsFillBagCheckFill className="mr-2" />
 						Pay ₹{subTotal}
 					</button>
 				</div>

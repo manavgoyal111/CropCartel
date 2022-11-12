@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import mongoose from "mongoose";
+import Order from "../models/Order";
 
-const Order = () => {
-	const router = useRouter();
-
+const MyOrder = ({ order }) => {
 	return (
 		<div>
 			<Head>
@@ -19,10 +18,11 @@ const Order = () => {
 								SAREEWEAR.COM
 							</h2>
 							<h1 className="text-gray-900 text-2xl title-font font-medium mb-4">
-								Order Id: {router.query.id}
+								Order Id: #{order.orderId}
 							</h1>
 							<p className="leading-relaxed mb-4">
-								Your order has been successfully placed!
+								Your order has been successfully placed! Your payment status is:{" "}
+								{order.status.charAt(0).toUpperCase() + order.status.slice(1)}
 							</p>
 							<div className="flex mb-4">
 								<a className="flex-grow py-2 text-lg px-1 text-center">
@@ -33,24 +33,24 @@ const Order = () => {
 									Item Total
 								</a>
 							</div>
-							<div className="flex border-t border-gray-200 py-2">
-								<span className="text-gray-500">Wear the Code (XL)</span>
-								<span className="ml-auto text-gray-900">4</span>
-								<span className="ml-auto text-gray-900">₹366</span>
-							</div>
-							<div className="flex border-t border-gray-200 py-2">
-								<span className="text-gray-500">Wear the Code (L)</span>
-								<span className="ml-auto text-gray-900">2</span>
-								<span className="ml-auto text-gray-900">₹739</span>
-							</div>
-							<div className="flex border-t border-b mb-6 border-gray-200 py-2">
-								<span className="text-gray-500">Wear the Code (S)</span>
-								<span className="ml-auto text-gray-900">4</span>
-								<span className="ml-auto text-gray-900">₹43</span>
-							</div>
+							{/* {console.log(Object.keys(order.products))} */}
+							{Object.keys(order.products).map((key, idx) => (
+								<div key={idx} className="flex border-t border-gray-200 py-2">
+									<span className="text-gray-500">
+										{order.products[key].name}({order.products[key].size}/
+										{order.products[key].variant})
+									</span>
+									<span className="m-auto text-gray-900">
+										{order.products[key].qty}
+									</span>
+									<span className="m-auto text-gray-900">
+										₹{order.products[key].price}
+									</span>
+								</div>
+							))}
 							<div className="flex flex-col">
 								<span className="title-font font-medium text-2xl text-gray-900">
-									Subtotal: ₹2829
+									Subtotal: ₹{order.amount}
 								</span>
 								<div className="my-6">
 									<button className="flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded">
@@ -60,7 +60,7 @@ const Order = () => {
 							</div>
 						</div>
 						<Image
-							src="https://dummyimage.com/400x400"
+							src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FydHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
 							alt="ecommerce"
 							height={400}
 							width={400}
@@ -73,4 +73,18 @@ const Order = () => {
 	);
 };
 
-export default Order;
+export async function getServerSideProps(context) {
+	if (!mongoose.connections[0].readyState) {
+		await mongoose.connect(process.env.MONGO_URI);
+	}
+
+	let order = await Order.findById(context.query.id);
+
+	return {
+		props: {
+			order: JSON.parse(JSON.stringify(order)),
+		},
+	};
+}
+
+export default MyOrder;

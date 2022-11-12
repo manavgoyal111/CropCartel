@@ -1,28 +1,49 @@
+import Order from "../../models/Order";
+import connectDb from "../../middleware/mongoose";
+
 const Razorpay = require("razorpay");
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
 	const instance = new Razorpay({
-		key_id: "rzp_test_KuFQeWdckR2Z5I",
-		key_secret: "WulLGjsEY6ITNzjfceIanBCE",
+		key_id: process.env.NEXT_PUBLIC_PAY_KEY_ID,
+		key_secret: process.env.NEXT_PUBLIC_PAY_KEY_SECRET,
 	});
-	const { orderId, subTotal, payment_capture, razorpay_payment_id } = req.body;
-	console.log(req.body.response);
-	console.log(req.body.subTotal);
 
 	if (req.method == "POST") {
 		try {
+			// Generating Order ID
 			const options = {
-				amount: 100,
-				// amount: Number(subTotal * 100),
+				amount: req.body.subTotal * 100,
 				currency: "INR",
-				// receipt: orderId,
-				// payment_capture: payment_capture,
 			};
+			const orderData = await instance.orders.create(options);
 
-			const order = await instance.orders.create(options);
-			// console.log(order);
-			if (!order) return res.status(500).send("Some error Occured");
-			res.status(200).json({ success: true, data: order });
+			if (!orderData) {
+				return res.status(500).send("Some error Occured");
+			}
+
+			try {
+				// Check if the Cart is Tampered
+
+				// Check if the cart items are out of Stock
+
+				// Check if the details are valid
+
+				// Initiate an Order corresponding to this OrderId
+				let o = new Order({
+					email: req.body.email,
+					orderId: orderData.id,
+					address: req.body.address,
+					products: req.body.cart,
+					amount: orderData.amount,
+					status: orderData.status,
+				});
+				await o.save();
+			} catch (err) {
+				console.log("Order not initiated ", err);
+			}
+
+			res.status(200).json({ success: true, data: orderData });
 		} catch (err) {
 			return res.status(500).json({
 				message: err,
@@ -30,9 +51,6 @@ export default async function handler(req, res) {
 		}
 	} else if (req.method == "GET") {
 		try {
-			// await instance.payment.fetch(razorpay_payment_id).then((order) => {
-			// 	res.status(200).json({ success: true, data: order });
-			// });
 			res.status(200).json({ key: process.env.NEXT_PUBLIC_PAY_KEY_ID });
 		} catch (err) {
 			return res.status(500).json({
@@ -40,4 +58,6 @@ export default async function handler(req, res) {
 			});
 		}
 	}
-}
+};
+
+export default connectDb(handler);
