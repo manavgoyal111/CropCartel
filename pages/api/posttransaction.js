@@ -1,7 +1,8 @@
-const crypto = require("crypto");
-import Order from "../../models/Order";
 import connectDb from "../../middleware/mongoose";
+import Order from "../../models/Order";
+import Product from "../../models/Product";
 
+const crypto = require("crypto");
 const Razorpay = require("razorpay");
 
 const handler = async (req, res) => {
@@ -34,10 +35,20 @@ const handler = async (req, res) => {
 		}
 	);
 
+	if (orderInfo.status === "captured") {
+		let products = order.products;
+		for (let slug in products) {
+			await Product.findOneAndUpdate(
+				{ slug: slug },
+				{ $inc: { availableQty: -products[slug].qty } }
+			);
+		}
+	}
+
 	// Initiate Shipping
 
 	// Redirect user to Order confirmation page
-	res.redirect(`${process.env.NEXT_PUBLIC_HOST}/order?id=${order._id}`);
+	res.redirect(`${process.env.NEXT_PUBLIC_HOST}/order?id=${order._id}&clearCart=1`);
 };
 
 export default connectDb(handler);

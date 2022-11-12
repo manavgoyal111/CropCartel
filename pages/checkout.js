@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
+	const [email, setEmail] = useState("Please login to order");
 	const [phone, setPhone] = useState("");
 	const [pincode, setPincode] = useState("");
 	const [address, setAddress] = useState("");
@@ -14,15 +16,47 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	const [city, setCity] = useState("");
 	const [disabled, setDisabled] = useState(true);
 
-	const handleChange = (e) => {
+	useEffect(() => {
+		const getUser = async () => {
+			let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ token: localStorage.getItem("token") }),
+			});
+			let res = await a.json();
+			if (res.success) {
+				setEmail(res.data.email);
+				setName(res.data.name);
+			} else {
+				setEmail("Please login to order");
+			}
+		};
+		getUser();
+	}, []);
+
+	const handleChange = async (e) => {
 		if (e.target.name == "name") {
 			setName(e.target.value);
-		} else if (e.target.name == "email") {
-			setEmail(e.target.value);
 		} else if (e.target.name == "phone") {
 			setPhone(e.target.value);
 		} else if (e.target.name == "pincode") {
 			setPincode(e.target.value);
+			if (e.target.value.length == 6) {
+				let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+				let pinJson = await pins.json();
+				if (Object.keys(pinJson).includes(e.target.value)) {
+					setState(pinJson[e.target.value][1]);
+					setCity(pinJson[e.target.value][0]);
+				} else {
+					setState("NA");
+					setCity("NA");
+				}
+			} else {
+				setState("NA");
+				setCity("NA");
+			}
 		} else if (e.target.name == "address") {
 			setAddress(e.target.value);
 		}
@@ -50,41 +84,55 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			body: JSON.stringify(orderData),
 		});
 		const orderDataRes = await orderRes.json();
-		const { data } = orderDataRes;
-		console.log(data);
+		const { success, data } = orderDataRes;
 
-		const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		const orderKeyRes = await orderKey.json();
+		if (success) {
+			const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const orderKeyRes = await orderKey.json();
 
-		const options = {
-			key: orderKeyRes,
-			amount: data.amount,
-			currency: "INR",
-			name: "SareeWear",
-			description: "Wear a Saree with Style",
-			image: "14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
-			order_id: data.id,
-			callback_url: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
-			prefill: {
-				name: name,
-				email: email,
-				contact: phone,
-			},
-			notes: {
-				address: address,
-			},
-			theme: {
-				color: "#99cc33",
-			},
-		};
+			const options = {
+				key: orderKeyRes,
+				amount: data.amount,
+				currency: "INR",
+				name: "SareeWear",
+				description: "Wear a Saree with Style",
+				image: "14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
+				order_id: data.id,
+				callback_url: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
+				prefill: {
+					name: name,
+					email: email,
+					contact: phone,
+				},
+				notes: {
+					address: address,
+				},
+				theme: {
+					color: "#99cc33",
+				},
+			};
 
-		var razor = new window.Razorpay(options);
-		razor.open();
+			var razor = new window.Razorpay(options);
+			razor.open();
+		} else {
+			console.log("Error: ", data);
+			localStorage.removeItem("cart");
+			clearCart();
+			toast.error(`Error: ${data}`, {
+				position: "top-left",
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		}
 	};
 
 	return (
@@ -101,6 +149,18 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				type="application/javascript"
 				crossorigin="anonymous"
 				src="https://checkout.razorpay.com/v1/checkout.js"
+			/>
+
+			<ToastContainer
+				position="top-left"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
 			/>
 
 			<div className="container sm:m-auto px-2 md:w-10/12">
@@ -132,7 +192,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								id="email"
 								name="email"
 								value={email}
-								onChange={handleChange}
+								readOnly
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -165,6 +225,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								id="phone"
 								name="phone"
 								value={phone}
+								min={0}
 								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
@@ -176,10 +237,11 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								Pincode
 							</label>
 							<input
-								type="text"
+								type="number"
 								id="pincode"
 								name="pincode"
 								value={pincode}
+								min={0}
 								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
@@ -197,7 +259,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								id="state"
 								name="state"
 								value={state}
-								readOnly={true}
+								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
@@ -212,7 +274,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								id="city"
 								name="city"
 								value={city}
-								readOnly={true}
+								onChange={handleChange}
 								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>

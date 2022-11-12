@@ -146,3 +146,4 @@ export default MyApp;
 // NEXT_PUBLIC_PAY_KEY_SECRET=WulLGjsEY6ITNzjfceIanBCE
 
 // To-Do
+// Create a api to get user data from token and use it in /checkout for email generation

@@ -19,7 +19,7 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 	const checkServiceability = async () => {
 		let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
 		let pinJson = await pins.json();
-		if (pinJson.includes(parseInt(pin))) {
+		if (Object.keys(pinJson).includes(pin)) {
 			setService(true);
 			toast.success("Your pincode is serviceable!", {
 				position: "bottom-center",
@@ -193,9 +193,7 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 								<div className="flex">
 									<span className="mr-3">Color</span>
 									{Object.keys(variants).includes("red") &&
-										Object.keys(variants["red"]).includes(
-											size
-										) && (
+										Object.keys(variants["red"]).includes(size) && (
 											<button
 												onClick={(e) => {
 													refreshVariant("red", size);
@@ -208,15 +206,10 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 											></button>
 										)}
 									{Object.keys(variants).includes("black") &&
-										Object.keys(variants["black"]).includes(
-											size
-										) && (
+										Object.keys(variants["black"]).includes(size) && (
 											<button
 												onClick={(e) => {
-													refreshVariant(
-														"black",
-														size
-													);
+													refreshVariant("black", size);
 												}}
 												className={`border-2 bg-black rounded-full w-6 h-6 focus:outline-none ${
 													color !== "black"
@@ -226,15 +219,10 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 											></button>
 										)}
 									{Object.keys(variants).includes("blue") &&
-										Object.keys(variants["blue"]).includes(
-											size
-										) && (
+										Object.keys(variants["blue"]).includes(size) && (
 											<button
 												onClick={(e) => {
-													refreshVariant(
-														"blue",
-														size
-													);
+													refreshVariant("blue", size);
 												}}
 												className={`border-2 bg-blue-600 rounded-full w-6 h-6 focus:outline-none ${
 													color !== "blue"
@@ -244,15 +232,10 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 											></button>
 										)}
 									{Object.keys(variants).includes("green") &&
-										Object.keys(variants["green"]).includes(
-											size
-										) && (
+										Object.keys(variants["green"]).includes(size) && (
 											<button
 												onClick={(e) => {
-													refreshVariant(
-														"green",
-														size
-													);
+													refreshVariant("green", size);
 												}}
 												className={`border-2 bg-green-600 rounded-full w-6 h-6 focus:outline-none ${
 													color !== "green"
@@ -262,15 +245,10 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 											></button>
 										)}
 									{Object.keys(variants).includes("yellow") &&
-										Object.keys(
-											variants["yellow"]
-										).includes(size) && (
+										Object.keys(variants["yellow"]).includes(size) && (
 											<button
 												onClick={(e) => {
-													refreshVariant(
-														"yellow",
-														size
-													);
+													refreshVariant("yellow", size);
 												}}
 												className={`border-2 bg-yellow-600 rounded-full w-6 h-6 focus:outline-none ${
 													color !== "yellow"
@@ -286,36 +264,23 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 										<select
 											value={size}
 											onChange={(e) => {
-												refreshVariant(
-													color,
-													e.target.value
-												);
+												refreshVariant(color, e.target.value);
 											}}
 											className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10"
 										>
-											{Object.keys(
-												variants[color]
-											).includes("S") && (
+											{Object.keys(variants[color]).includes("S") && (
 												<option value="S">S</option>
 											)}
-											{Object.keys(
-												variants[color]
-											).includes("M") && (
+											{Object.keys(variants[color]).includes("M") && (
 												<option value="M">M</option>
 											)}
-											{Object.keys(
-												variants[color]
-											).includes("L") && (
+											{Object.keys(variants[color]).includes("L") && (
 												<option value="L">L</option>
 											)}
-											{Object.keys(
-												variants[color]
-											).includes("XL") && (
+											{Object.keys(variants[color]).includes("XL") && (
 												<option value="XL">XL</option>
 											)}
-											{Object.keys(
-												variants[color]
-											).includes("XXL") && (
+											{Object.keys(variants[color]).includes("XXL") && (
 												<option value="XXL">XXL</option>
 											)}
 										</select>
@@ -341,14 +306,7 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 								</span>
 								<button
 									onClick={() => {
-										buyNow(
-											slug,
-											1,
-											product.price,
-											product.title,
-											size,
-											color
-										);
+										buyNow(slug, 1, product.price, product.title, size, color);
 									}}
 									className="flex ml-8 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded"
 								>

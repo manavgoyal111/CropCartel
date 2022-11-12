@@ -1,20 +1,35 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import mongoose from "mongoose";
-import Order from "../models/Order";
+import Link from "next/link";
 
 const Orders = () => {
 	const router = useRouter();
 
+	const [orders, setOrders] = useState([]);
+
 	useEffect(() => {
+		const fetchOrders = async () => {
+			let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ token: localStorage.getItem("token") }),
+			});
+			let res = await a.json();
+			setOrders(res.orders);
+		};
+
 		if (!localStorage.getItem("token")) {
 			router.push("/");
+		} else {
+			fetchOrders();
 		}
-	}, []);
+	}, [router]);
 
 	return (
-		<div>
+		<div className="min-h-screen">
 			<Head>
 				<title>Orders | SareeWear</title>
 			</Head>
@@ -34,71 +49,50 @@ const Orders = () => {
 												scope="col"
 												className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
 											>
-												#
+												#Order Id
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
 											>
-												First
+												Name
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
 											>
-												Last
+												Amount
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
 											>
-												Handle
+												Details
 											</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-											<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-												1
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												Mark
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												Otto
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												@mdo
-											</td>
-										</tr>
-										<tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-											<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-												2
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												Jacob
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												Thornton
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												@fat
-											</td>
-										</tr>
-										<tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-											<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-												3
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												Larry
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												Wild
-											</td>
-											<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-												@twitter
-											</td>
-										</tr>
+										{orders.map((order, idx) => (
+											<tr
+												key={idx}
+												className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+											>
+												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+													#{order.orderId}
+												</td>
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+													{order.email}
+												</td>
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+													₹{order.amount / 100}
+												</td>
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+													<Link href={`/order?id=${order._id}`}>
+														<a>Details</a>
+													</Link>
+												</td>
+											</tr>
+										))}
 									</tbody>
 								</table>
 							</div>
@@ -109,19 +103,5 @@ const Orders = () => {
 		</div>
 	);
 };
-
-export async function getServerSideProps(context) {
-	if (!mongoose.connections[0].readyState) {
-		await mongoose.connect(process.env.MONGO_URI);
-	}
-
-	let orders = await Order.find({});
-
-	return {
-		props: {
-			orders,
-		},
-	};
-}
 
 export default Orders;

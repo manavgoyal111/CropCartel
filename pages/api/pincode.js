@@ -1,3 +1,9 @@
 export default function handler(req, res) {
-	res.status(200).json([234400, 721302, 110003, 560017, 854318]);
+	const pincodes = {
+		854318: ["Araria", "Bihar"],
+		811201: ["Munger", "Bihar"],
+		632014: ["Vellore", "Tamil Nadu"],
+	};
+
+	res.status(200).json(pincodes);
 }

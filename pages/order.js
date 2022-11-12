@@ -1,9 +1,19 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import mongoose from "mongoose";
 import Order from "../models/Order";
 
-const MyOrder = ({ order }) => {
+const MyOrder = ({ order, clearCart }) => {
+	const router = useRouter();
+
+	useEffect(() => {
+		if (router.query.clearCart == 1) {
+			clearCart();
+		}
+	}, [router]);
+
 	return (
 		<div>
 			<Head>
@@ -13,16 +23,21 @@ const MyOrder = ({ order }) => {
 			<section className="text-gray-600 body-font overflow-hidden">
 				<div className="container px-5 py-24 mx-auto">
 					<div className="lg:w-4/5 mx-auto flex flex-wrap">
-						<div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+						<div className="lg:w-7/12 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
 							<h2 className="text-sm title-font text-gray-500 tracking-widest">
 								SAREEWEAR.COM
 							</h2>
-							<h1 className="text-gray-900 text-2xl title-font font-medium mb-4">
-								Order Id: #{order.orderId}
+							<h1 className="text-gray-900 text-xl md:text-2xl title-font font-medium mb-4">
+								Order Id #{order.orderId}
 							</h1>
+							<p className="leading-relaxed">
+								Yayy! Your order has been successfully placed!
+							</p>
 							<p className="leading-relaxed mb-4">
-								Your order has been successfully placed! Your payment status is:{" "}
-								{order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+								Your payment status is:{" "}
+								<span className="font-semibold text-slate-600">
+									{order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+								</span>
 							</p>
 							<div className="flex mb-4">
 								<a className="flex-grow py-2 text-lg px-1 text-center">
@@ -33,7 +48,6 @@ const MyOrder = ({ order }) => {
 									Item Total
 								</a>
 							</div>
-							{/* {console.log(Object.keys(order.products))} */}
 							{Object.keys(order.products).map((key, idx) => (
 								<div key={idx} className="flex border-t border-gray-200 py-2">
 									<span className="text-gray-500">
@@ -48,9 +62,9 @@ const MyOrder = ({ order }) => {
 									</span>
 								</div>
 							))}
-							<div className="flex flex-col">
+							<div className="flex flex-col my-8">
 								<span className="title-font font-medium text-2xl text-gray-900">
-									Subtotal: ₹{order.amount}
+									Subtotal: ₹{order.amount / 100}
 								</span>
 								<div className="my-6">
 									<button className="flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded">
