@@ -17,7 +17,8 @@ const handler = async (req, res) => {
 
 	// Payment Invalid
 	if (expectedSignature !== razorpay_signature) {
-		res.status(400).json({ success: false });
+		res.status(400).json({ success: false, data: "Some error occurred" });
+		return;
 	}
 
 	// Update the Order status
@@ -35,6 +36,7 @@ const handler = async (req, res) => {
 		}
 	);
 
+	// Update the Product quantity
 	if (orderInfo.status === "captured") {
 		let products = order.products;
 		for (let slug in products) {

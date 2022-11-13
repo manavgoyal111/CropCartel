@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -8,10 +8,15 @@ import Order from "../models/Order";
 const MyOrder = ({ order, clearCart }) => {
 	const router = useRouter();
 
+	const [date, setDate] = useState();
+
 	useEffect(() => {
 		if (router.query.clearCart == 1) {
 			clearCart();
 		}
+
+		const newDate = new Date(order.createdAt);
+		setDate(newDate);
 	}, [router]);
 
 	return (
@@ -32,6 +37,18 @@ const MyOrder = ({ order, clearCart }) => {
 							</h1>
 							<p className="leading-relaxed">
 								Yayy! Your order has been successfully placed!
+							</p>
+							<p className="leading-relaxed">
+								Order placed on:{" "}
+								<span className="font-semibold text-slate-600">
+									{date &&
+										date.toLocaleDateString("en-IN", {
+											weekday: "long",
+											year: "numeric",
+											month: "long",
+											day: "numeric",
+										})}
+								</span>
 							</p>
 							<p className="leading-relaxed mb-4">
 								Your payment status is:{" "}

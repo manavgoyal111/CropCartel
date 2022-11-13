@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import mongoose from "mongoose";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Product from "../../models/Product";
 
-const Post = ({ addToCart, buyNow, product, variants }) => {
+const Post = ({ addToCart, buyNow, product, variants, error }) => {
 	const router = useRouter();
 	const { slug } = router.query;
 
 	const [pin, setPin] = useState();
 	const [service, setService] = useState();
-	const [color, setColor] = useState(product.color);
-	const [size, setSize] = useState(product.size);
+	const [color, setColor] = useState();
+	const [size, setSize] = useState();
+
+	useEffect(() => {
+		if (!error) {
+			setColor(product.color);
+			setSize(product.size);
+		}
+	}, [router.query]);
 
 	const checkServiceability = async () => {
 		let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
@@ -50,8 +58,30 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 
 	const refreshVariant = (newColor, newSize) => {
 		let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]["slug"]}`;
-		window.location = url;
+		router.push(url);
 	};
+
+	if (error == 404) {
+		return (
+			<main className="h-screen w-full flex flex-col justify-center items-center bg-pink-400">
+				<h1 className="text-9xl font-extrabold text-white tracking-widest">404</h1>
+				<div className="bg-pink-600 px-2 text-sm rounded rotate-12 absolute">
+					Page Not Found
+				</div>
+				<button className="mt-5">
+					<a className="relative inline-block text-sm font-medium text-gray-600 group active:text-gray-800 focus:outline-none focus:ring">
+						<span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-pink-800 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+						<span className="relative block px-8 py-3 bg-pink-600 border border-current">
+							<Link href="/">
+								<a>Go Home</a>
+							</Link>
+						</span>
+					</a>
+				</button>
+			</main>
+		);
+	}
 
 	return (
 		<div>
@@ -268,21 +298,26 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 											}}
 											className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10"
 										>
-											{Object.keys(variants[color]).includes("S") && (
-												<option value="S">S</option>
-											)}
-											{Object.keys(variants[color]).includes("M") && (
-												<option value="M">M</option>
-											)}
-											{Object.keys(variants[color]).includes("L") && (
-												<option value="L">L</option>
-											)}
-											{Object.keys(variants[color]).includes("XL") && (
-												<option value="XL">XL</option>
-											)}
-											{Object.keys(variants[color]).includes("XXL") && (
-												<option value="XXL">XXL</option>
-											)}
+											{color &&
+												Object.keys(variants[color]).includes("S") && (
+													<option value="S">S</option>
+												)}
+											{color &&
+												Object.keys(variants[color]).includes("M") && (
+													<option value="M">M</option>
+												)}
+											{color &&
+												Object.keys(variants[color]).includes("L") && (
+													<option value="L">L</option>
+												)}
+											{color &&
+												Object.keys(variants[color]).includes("XL") && (
+													<option value="XL">XL</option>
+												)}
+											{color &&
+												Object.keys(variants[color]).includes("XXL") && (
+													<option value="XXL">XXL</option>
+												)}
 										</select>
 										<span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
 											<svg
@@ -301,14 +336,21 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 								</div>
 							</div>
 							<div className="flex">
-								<span className="title-font font-medium text-2xl text-gray-900">
-									₹{product.price}
-								</span>
+								{product.availableQty <= 0 ? (
+									<span className="title-font font-medium text-2xl text-gray-900">
+										Out of Stock!
+									</span>
+								) : (
+									<span className="title-font font-medium text-2xl text-gray-900">
+										₹{product.price}
+									</span>
+								)}
 								<button
 									onClick={() => {
 										buyNow(slug, 1, product.price, product.title, size, color);
 									}}
-									className="flex ml-8 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded"
+									disabled={product.availableQty <= 0 ? true : false}
+									className="flex ml-8 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded disabled:bg-pink-300"
 								>
 									Buy Now
 								</button>
@@ -323,7 +365,8 @@ const Post = ({ addToCart, buyNow, product, variants }) => {
 											color
 										);
 									}}
-									className="flex ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded"
+									disabled={product.availableQty <= 0 ? true : false}
+									className="flex ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded disabled:bg-pink-300"
 								>
 									Add to Cart
 								</button>
@@ -377,12 +420,25 @@ export async function getServerSideProps(context) {
 		await mongoose.connect(process.env.MONGO_URI);
 	}
 
+	let error = null;
 	let product = await Product.findOne({ slug: context.query.slug });
+
+	// Trying to access a product that doesn't exist
+	if (product == null) {
+		return {
+			props: {
+				error: 404,
+			},
+		};
+	}
+
+	// Getting product details from database
 	let variants = await Product.find({
 		title: product.title,
 		category: product.category,
 	});
-	let colorSizeSlug = {}; // {red: {XL: {slug: "wear-saree"}}}
+	// Format: {red: {XL: {slug: "wear-saree"}}}
+	let colorSizeSlug = {};
 	for (let item of variants) {
 		if (Object.keys(colorSizeSlug).includes(item.color)) {
 			colorSizeSlug[item.color][item.size] = { slug: item.slug };
@@ -394,6 +450,7 @@ export async function getServerSideProps(context) {
 
 	return {
 		props: {
+			error,
 			product: JSON.parse(JSON.stringify(product)),
 			variants: JSON.parse(JSON.stringify(colorSizeSlug)),
 		},

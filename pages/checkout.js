@@ -36,6 +36,21 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 		getUser();
 	}, []);
 
+	useEffect(() => {
+		if (
+			name.length > 3 &&
+			email.length > 3 &&
+			phone.length > 3 &&
+			address.length > 3 &&
+			pincode.length > 3 &&
+			subTotal > 0
+		) {
+			setDisabled(false);
+		} else {
+			setDisabled(true);
+		}
+	}, [name, email, phone, pincode, address, subTotal]);
+
 	const handleChange = async (e) => {
 		if (e.target.name == "name") {
 			setName(e.target.value);
@@ -60,23 +75,11 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 		} else if (e.target.name == "address") {
 			setAddress(e.target.value);
 		}
-
-		if (
-			name.length > 3 &&
-			email.length > 3 &&
-			phone.length > 3 &&
-			address.length > 3 &&
-			pincode.length > 3 &&
-			subTotal > 0
-		) {
-			setDisabled(false);
-		} else {
-			setDisabled(true);
-		}
 	};
 
 	const initiatePayment = async () => {
 		const orderData = { subTotal, cart, email, name, phone, pincode, address };
+		console.log(orderData);
 		const orderRes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
 			method: "POST",
 			headers: {
