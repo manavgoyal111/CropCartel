@@ -27,7 +27,7 @@ const handler = async (req, res) => {
 			}
 
 			// Check if user is not logged in
-			if (req.body.email === "Please login to order") {
+			if (req.body.email === "User not Logged in") {
 				return res.status(400).json({
 					success: false,
 					data: "Please login to order",
@@ -113,7 +113,7 @@ const handler = async (req, res) => {
 			} catch (err) {
 				return res.status(500).json({
 					success: false,
-					data: err,
+					data: "Some Error Occured",
 					cartClear: false,
 				});
 			}
@@ -122,7 +122,7 @@ const handler = async (req, res) => {
 		} catch (err) {
 			return res.status(500).json({
 				success: false,
-				data: err,
+				data: "Some Error Occured",
 				cartClear: false,
 			});
 		}

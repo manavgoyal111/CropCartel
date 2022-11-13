@@ -87,7 +87,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	};
 
 	const initiatePayment = async () => {
-		const orderData = { subTotal, cart, email, name, phone, pincode, address };
+		const orderData = { subTotal, cart, email, name, phone, pincode, address, city, state };
 		const orderRes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
 			method: "POST",
 			headers: {
@@ -97,6 +97,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 		});
 		const orderDataRes = await orderRes.json();
 		const { success, data, cartClear } = orderDataRes;
+
+		console.log(orderDataRes);
 
 		if (success) {
 			const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
@@ -136,27 +138,15 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			if (cartClear) {
 				clearCart();
 			}
-			if (data.error) {
-				toast.error(`Error: ${data.error.description}`, {
-					position: "top-left",
-					autoClose: 1000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-			} else {
-				toast.error(`Error: ${data}`, {
-					position: "top-left",
-					autoClose: 1000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-				});
-			}
+			toast.error(data, {
+				position: "top-left",
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
 		}
 	};
 
