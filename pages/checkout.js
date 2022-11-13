@@ -98,8 +98,6 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 		const orderDataRes = await orderRes.json();
 		const { success, data, cartClear } = orderDataRes;
 
-		console.log(orderDataRes);
-
 		if (success) {
 			const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
 				method: "GET",

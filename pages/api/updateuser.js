@@ -1,12 +1,13 @@
-import jsonwebtoken from "jsonwebtoken";
 import connectDb from "../../middleware/mongoose";
 import User from "../../models/User";
+
+var jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
 	if (req.method === "POST") {
 		try {
 			const token = req.body.token;
-			const userData = jsonwebtoken.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
+			const userData = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
 			const userDbData = await User.findOneAndUpdate(
 				{ email: userData.email },
 				{

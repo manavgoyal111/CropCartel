@@ -26,7 +26,6 @@ const MyAccount = () => {
 				body: JSON.stringify({ token: localStorage.getItem("token") }),
 			});
 			let userRes = await res.json();
-            console.log(userRes);
 			if (userRes.success) {
 				setEmail(userRes.data.email);
 				setName(userRes.data.name);
