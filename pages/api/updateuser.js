@@ -7,9 +7,16 @@ const handler = async (req, res) => {
 		try {
 			const token = req.body.token;
 			const userData = jsonwebtoken.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
-			const userDbData = await User.findOne({ email: userData.email });
-			const { name, email, address, pincode, phone } = userDbData;
-			res.status(200).json({ success: true, data: { name, email, address, pincode, phone } });
+			const userDbData = await User.findOneAndUpdate(
+				{ email: userData.email },
+				{
+					name: req.body.name,
+					address: req.body.address,
+					pincode: req.body.pincode,
+					phone: req.body.phone,
+				}
+			);
+			res.status(200).json({ success: true, data: userDbData });
 		} catch (err) {
 			res.status(400).json({ success: false, data: err });
 		}

@@ -148,4 +148,3 @@ export default MyApp;
 // To-Do
 // Create a api to get user data from token and use it in /checkout for email generation
 // Change city to district name
-// Don't empty cart for certain cases

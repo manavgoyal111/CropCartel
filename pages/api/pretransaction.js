@@ -99,7 +99,12 @@ const handler = async (req, res) => {
 				let o = new Order({
 					email: req.body.email,
 					orderId: orderData.id,
+					name: req.body.name,
 					address: req.body.address,
+					city: req.body.city,
+					state: req.body.state,
+					pincode: req.body.pincode,
+					phone: req.body.phone,
 					products: req.body.cart,
 					amount: orderData.amount,
 					status: orderData.status,

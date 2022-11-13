@@ -18,7 +18,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
+			let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -29,6 +29,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			if (res.success) {
 				setEmail(res.data.email);
 				setName(res.data.name);
+				setAddress(res.data.address);
+				setPhone(res.data.phone);
+				setPincode(res.data.pincode);
+				getPincodeData(res.data.pincode);
 			} else {
 				setEmail("Please login to order");
 			}
@@ -51,6 +55,24 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 		}
 	}, [name, email, phone, pincode, address, subTotal]);
 
+	const getPincodeData = async (pincode) => {
+		if (pincode.length == 6) {
+			let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+			let pinsRes = await pins.json();
+			let pinJson = pinsRes.data;
+			if (Object.keys(pinJson).includes(pincode)) {
+				setState(pinJson[pincode][1]);
+				setCity(pinJson[pincode][0]);
+			} else {
+				setState("NA");
+				setCity("NA");
+			}
+		} else {
+			setState("NA");
+			setCity("NA");
+		}
+	};
+
 	const handleChange = async (e) => {
 		if (e.target.name == "name") {
 			setName(e.target.value);
@@ -58,21 +80,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			setPhone(e.target.value);
 		} else if (e.target.name == "pincode") {
 			setPincode(e.target.value);
-			if (e.target.value.length == 6) {
-				let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
-				let pinsRes = await pins.json();
-				let pinJson = pinsRes.data;
-				if (Object.keys(pinJson).includes(e.target.value)) {
-					setState(pinJson[e.target.value][1]);
-					setCity(pinJson[e.target.value][0]);
-				} else {
-					setState("NA");
-					setCity("NA");
-				}
-			} else {
-				setState("NA");
-				setCity("NA");
-			}
+			getPincodeData(e.target.value);
 		} else if (e.target.name == "address") {
 			setAddress(e.target.value);
 		}
@@ -117,7 +125,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					address: address,
 				},
 				theme: {
-					color: "#99cc33",
+					color: "#DB2777",
 				},
 			};
 
