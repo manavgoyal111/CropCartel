@@ -126,26 +126,3 @@ const MyApp = ({ Component, pageProps }) => {
 };
 
 export default MyApp;
-
-// Development
-// MONGO_URI=mongodb://localhost:27017/sareewear
-// NEXT_PUBLIC_HOST=http://localhost:3000
-
-// Production
-// NEXT_PUBLIC_HOST=https://saree-wear.vercel.app/
-// MONGO_URI=
-
-// Paytm Data
-// NEXT_PUBLIC_PAYTM_HOST=https://securegw.paytm.in
-// NEXT_PUBLIC_PAYTM_MID=gFJEHN98368540576014
-// PAYTM_MKEY=jdXGn52l1e3mb%pQ
-
-// RazorPay Data
-// NEXT_PUBLIC_PAY_MERCHANT_ID=KdopIMLXiTEmMv
-// NEXT_PUBLIC_PAY_KEY_ID=rzp_test_KuFQeWdckR2Z5I
-// NEXT_PUBLIC_PAY_KEY_SECRET=WulLGjsEY6ITNzjfceIanBCE
-
-// To-Do
-// Create a api to get user data from token and use it in /checkout for email generation
-// Change city to district name
-// Send reset email

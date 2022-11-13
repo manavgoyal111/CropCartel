@@ -7,7 +7,9 @@ const handler = async (req, res) => {
 		try {
 			const token = req.body.token;
 			const userData = jsonwebtoken.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
+			console.log(userData);
 			const userDbData = await User.findOne({ email: userData.email });
+			console.log(userDbData);
 			const { name, email, address, pincode, phone } = userDbData;
 			res.status(200).json({ success: true, data: { name, email, address, pincode, phone } });
 		} catch (err) {
