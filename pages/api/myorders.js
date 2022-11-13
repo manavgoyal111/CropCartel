@@ -1,5 +1,5 @@
-import Order from "../../models/Order";
 import connectDb from "../../middleware/mongoose";
+import Order from "../../models/Order";
 
 var jwt = require("jsonwebtoken");
 
