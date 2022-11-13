@@ -20,7 +20,7 @@ const MyOrder = ({ order, clearCart }) => {
 	}, [router]);
 
 	return (
-		<div>
+		<div className="min-h-screen">
 			<Head>
 				<title>Order | SareeWear</title>
 			</Head>

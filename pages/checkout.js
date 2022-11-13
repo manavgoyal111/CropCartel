@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("Please login to order");
+	const [email, setEmail] = useState("User not Logged in");
 	const [phone, setPhone] = useState("");
 	const [pincode, setPincode] = useState("");
 	const [address, setAddress] = useState("");
@@ -34,7 +34,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				setPincode(res.data.pincode);
 				getPincodeData(res.data.pincode);
 			} else {
-				setEmail("Please login to order");
+				setEmail("User not Logged in");
 			}
 		};
 		getUser();
@@ -161,13 +161,13 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	};
 
 	return (
-		<div>
+		<div className="min-h-screen">
 			<Head>
 				<meta
 					name="viewport"
 					content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
 				/>
-				<title>Checkout | SareeWear</title>
+				<title>Checkout | SareeWear.com</title>
 			</Head>
 
 			<Script

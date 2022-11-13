@@ -56,7 +56,7 @@ const Signup = () => {
 	};
 
 	return (
-		<div>
+		<div className="min-h-screen">
 			<Head>
 				<title>Signup | SareeWear</title>
 			</Head>
@@ -77,12 +77,7 @@ const Signup = () => {
 				<div className="max-w-md w-full space-y-8">
 					<div>
 						<div className="mx-auto h-12 w-auto flex justify-center">
-							<Image
-								src="/2.png"
-								alt="sareewear"
-								height={50}
-								width={50}
-							/>
+							<Image src="/2.png" alt="sareewear" height={50} width={50} />
 						</div>
 						<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
 							Sign up for an account
@@ -97,11 +92,7 @@ const Signup = () => {
 							</Link>
 						</p>
 					</div>
-					<form
-						onSubmit={handleSubmit}
-						className="mt-8 space-y-6"
-						method="POST"
-					>
+					<form onSubmit={handleSubmit} className="mt-8 space-y-6" method="POST">
 						<input type="hidden" name="remember" value="true" />
 						<div className="rounded-md shadow-sm -space-y-px">
 							<div>

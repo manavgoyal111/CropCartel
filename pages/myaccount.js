@@ -8,7 +8,7 @@ const MyAccount = () => {
 	const router = useRouter();
 
 	const [name, setName] = useState("");
-	const [email, setEmail] = useState("Please login to order");
+	const [email, setEmail] = useState("User not Logged in");
 	const [phone, setPhone] = useState("");
 	const [pincode, setPincode] = useState("");
 	const [address, setAddress] = useState("");
@@ -141,7 +141,7 @@ const MyAccount = () => {
 	};
 
 	return (
-		<div>
+		<div className="min-h-screen">
 			<Head>
 				<title>My Account | SareeWear</title>
 			</Head>

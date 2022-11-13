@@ -6,14 +6,14 @@ import Product from "../models/Product";
 
 const Saree = ({ products }) => {
 	return (
-		<div>
+		<div className="min-h-screen">
 			<Head>
 				<title>Saree | SareeWear</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">
 				<div className="container px-5 py-24 mx-auto">
-					<div className="flex flex-wrap -m-4 justify-center">
+					<div className="flex flex-wrap -m-4 justify-center mx-5">
 						{Object.keys(products).length === 0 && (
 							<p>
 								Sorry, All the Sarees are currently out of stock. New stock coming
