@@ -1,6 +1,7 @@
+import connectDb from "../../middleware/mongoose";
 import Order from "../../models/Order";
 import Product from "../../models/Product";
-import connectDb from "../../middleware/mongoose";
+import pincodes from "../../pincodes.json";
 
 const Razorpay = require("razorpay");
 
@@ -20,7 +21,27 @@ const handler = async (req, res) => {
 			const orderData = await instance.orders.create(options);
 
 			if (!orderData) {
-				return res.status(500).send("Some error Occured");
+				return res
+					.status(500)
+					.send({ success: false, data: "Some error Occured", cartClear: false });
+			}
+
+			// Check if user is not logged in
+			if (req.body.email === "Please login to order") {
+				return res.status(400).json({
+					success: false,
+					data: "Please login to order",
+					cartClear: false,
+				});
+			}
+
+			// Check if the pincode is serviceable
+			if (!Object.keys(pincodes).includes(req.body.pincode)) {
+				return res.status(500).json({
+					success: false,
+					data: "Pincode not serviceable",
+					cartClear: false,
+				});
 			}
 
 			try {
@@ -33,45 +54,45 @@ const handler = async (req, res) => {
 					product = await Product.findOne({ slug: item });
 					// Check if the cart items are out of Stock
 					if (product.availableQty < cart[item].qty) {
-						res.status(500).json({
+						return res.status(500).json({
 							success: false,
 							data: "Some items in your cart went out of stock, please try with lesser quantity!",
+							cartClear: true,
 						});
-						return;
 					}
 
 					// Check if the Cart is Tampered with
 					if (product.price != cart[item].price) {
-						res.status(500).json({
+						return res.status(500).json({
 							success: false,
 							data: "Price of some items have changed, please try again!",
+							cartClear: true,
 						});
-						return;
 					}
 				}
 
 				if (sumTotal != req.body.subTotal) {
-					res.status(500).json({
+					return res.status(500).json({
 						success: false,
 						data: "Price of some items have changed, please try again.",
+						cartClear: true,
 					});
-					return;
 				}
 
 				// Check if the details are valid
 				if (req.body.phone.length !== 10 || !Number.isInteger(Number(req.body.phone))) {
-					res.status(500).json({
+					return res.status(500).json({
 						success: false,
 						data: "Please enter a 10 digit phone number",
+						cartClear: false,
 					});
-					return;
 				}
 				if (req.body.pincode.length !== 6 || !Number.isInteger(Number(req.body.pincode))) {
-					res.status(500).json({
+					return res.status(500).json({
 						success: false,
 						data: "Please enter your 6 digit pincode",
+						cartClear: false,
 					});
-					return;
 				}
 
 				// Initiate an Order corresponding to this OrderId
@@ -85,7 +106,11 @@ const handler = async (req, res) => {
 				});
 				await o.save();
 			} catch (err) {
-				console.log("Order not initiated ", err);
+				return res.status(500).json({
+					success: false,
+					data: err,
+					cartClear: false,
+				});
 			}
 
 			res.status(200).json({ success: true, data: orderData });
@@ -93,6 +118,7 @@ const handler = async (req, res) => {
 			return res.status(500).json({
 				success: false,
 				data: err,
+				cartClear: false,
 			});
 		}
 	} else if (req.method == "GET") {
@@ -100,7 +126,8 @@ const handler = async (req, res) => {
 			res.status(200).json({ key: process.env.NEXT_PUBLIC_PAY_KEY_ID });
 		} catch (err) {
 			return res.status(500).json({
-				message: err,
+				success: false,
+				data: err,
 			});
 		}
 	}

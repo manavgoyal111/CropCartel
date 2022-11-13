@@ -60,7 +60,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			setPincode(e.target.value);
 			if (e.target.value.length == 6) {
 				let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
-				let pinJson = await pins.json();
+				let pinsRes = await pins.json();
+				let pinJson = pinsRes.data;
 				if (Object.keys(pinJson).includes(e.target.value)) {
 					setState(pinJson[e.target.value][1]);
 					setCity(pinJson[e.target.value][0]);
@@ -79,7 +80,6 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 	const initiatePayment = async () => {
 		const orderData = { subTotal, cart, email, name, phone, pincode, address };
-		console.log(orderData);
 		const orderRes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
 			method: "POST",
 			headers: {
@@ -88,7 +88,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			body: JSON.stringify(orderData),
 		});
 		const orderDataRes = await orderRes.json();
-		const { success, data } = orderDataRes;
+		const { success, data, cartClear } = orderDataRes;
 
 		if (success) {
 			const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
@@ -125,7 +125,9 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 			razor.open();
 		} else {
 			localStorage.removeItem("cart");
-			clearCart();
+			if (cartClear) {
+				clearCart();
+			}
 			if (data.error) {
 				toast.error(`Error: ${data.error.description}`, {
 					position: "top-left",

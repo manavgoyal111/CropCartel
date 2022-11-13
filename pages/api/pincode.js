@@ -1,9 +1,9 @@
-export default function handler(req, res) {
-	const pincodes = {
-		854318: ["Araria", "Bihar"],
-		811201: ["Munger", "Bihar"],
-		632014: ["Vellore", "Tamil Nadu"],
-	};
+import pincodes from "../../pincodes.json";
 
-	res.status(200).json(pincodes);
+export default function handler(req, res) {
+	try {
+		res.status(200).json({ success: true, data: pincodes });
+	} catch (err) {
+		res.status(400).json({ success: false, data: err });
+	}
 }

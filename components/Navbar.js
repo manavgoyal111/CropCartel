@@ -24,7 +24,16 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 		Object.keys(cart).length !== 0 && setSidebar(true);
 
 		// Sidebar closed by default in these routes
-		const exempted = ["/checkout", "/orders", "/order", "/myaccount", "/"];
+		const exempted = [
+			"/checkout",
+			"/orders",
+			"/order",
+			"/myaccount",
+			"/login",
+			"/forgot",
+			"signup",
+			"/",
+		];
 		if (exempted.includes(router.pathname)) {
 			setSidebar(false);
 		}
