@@ -1,7 +1,7 @@
 import connectDb from "../../middleware/mongoose";
 import User from "../../models/User";
 
-var jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
 	try {

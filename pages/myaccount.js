@@ -27,6 +27,7 @@ const MyAccount = () => {
 			});
 			let userRes = await res.json();
 			if (userRes.success) {
+				console.log(userRes.data);
 				setEmail(userRes.data.email);
 				setName(userRes.data.name);
 				setAddress(userRes.data.address);
@@ -37,7 +38,7 @@ const MyAccount = () => {
 			}
 		};
 		getUser();
-	}, []);
+	}, [router]);
 
 	const handleChange = async (e) => {
 		if (e.target.name == "name") {
