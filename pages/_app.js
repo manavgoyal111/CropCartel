@@ -36,7 +36,7 @@ const MyApp = ({ Component, pageProps }) => {
 			setUser({ value: token });
 		}
 		setKey(Math.random());
-	}, [router.query]);
+	}, [router]);
 
 	const saveCart = (myCart) => {
 		localStorage.setItem("cart", JSON.stringify(myCart));
@@ -99,7 +99,8 @@ const MyApp = ({ Component, pageProps }) => {
 				waitingTime={400}
 				onLoaderFinished={() => setProgress(0)}
 			/>
-			{key && (
+
+			{key && !router.pathname.match(/admin/g) && (
 				<Navbar
 					key={key}
 					logout={logout}
@@ -111,6 +112,7 @@ const MyApp = ({ Component, pageProps }) => {
 					subTotal={subTotal}
 				/>
 			)}
+
 			<Component
 				cart={cart}
 				addToCart={addToCart}
@@ -120,7 +122,8 @@ const MyApp = ({ Component, pageProps }) => {
 				subTotal={subTotal}
 				{...pageProps}
 			/>
-			<Footer />
+
+			{!router.pathname.match(/admin/g) && <Footer />}
 		</div>
 	);
 };
@@ -129,4 +132,5 @@ export default MyApp;
 
 // Token expired then logout
 // Change city to district name
+// Make Dashboard
 // Send reset email

@@ -32,6 +32,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			"/login",
 			"/forgot",
 			"/signup",
+			"/admin",
 			"/",
 		];
 		if (exempted.includes(router.pathname)) {
