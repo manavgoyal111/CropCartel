@@ -18,14 +18,14 @@ const MyAccount = () => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({ token: localStorage.getItem("token") }),
 			});
-			let userRes = await res.json();
+			const userRes = await res.json();
 			console.log(userRes);
 			if (userRes.success) {
 				setEmail(userRes.data.email);

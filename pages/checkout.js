@@ -18,7 +18,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			let a = await fetch(`/api/getuser`, {
+			let a = await fetch(`/api/getUser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -26,7 +26,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				body: JSON.stringify({ token: localStorage.getItem("token") }),
 			});
 			let res = await a.json();
-            console.log(res);
+			console.log(res);
 			if (res.success) {
 				setEmail(res.data.email);
 				setName(res.data.name);
