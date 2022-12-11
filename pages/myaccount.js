@@ -26,7 +26,6 @@ const MyAccount = () => {
 				body: JSON.stringify({ token: localStorage.getItem("token") }),
 			});
 			const userRes = await res.json();
-			console.log(userRes);
 			if (userRes.success) {
 				setEmail(userRes.data.email);
 				setName(userRes.data.name);
@@ -34,6 +33,7 @@ const MyAccount = () => {
 				setPincode(userRes.data.pincode);
 				setPhone(userRes.data.phone);
 			} else {
+				setEmail("Please login to continue...");
 				router.push("/");
 			}
 		};

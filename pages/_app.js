@@ -127,6 +127,6 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// Check all return statements for getUserData file for getting error
+// Token expired then logout
 // Change city to district name
 // Send reset email

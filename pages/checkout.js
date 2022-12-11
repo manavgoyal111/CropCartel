@@ -18,24 +18,23 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			let a = await fetch(`/api/getUser`, {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({ token: localStorage.getItem("token") }),
 			});
-			let res = await a.json();
-			console.log(res);
-			if (res.success) {
-				setEmail(res.data.email);
-				setName(res.data.name);
-				setAddress(res.data.address);
-				setPhone(res.data.phone);
-				setPincode(res.data.pincode);
-				getPincodeData(res.data.pincode);
+			const userRes = await res.json();
+			if (userRes.success) {
+				setEmail(userRes.data.email);
+				setName(userRes.data.name);
+				setAddress(userRes.data.address);
+				setPhone(userRes.data.phone);
+				setPincode(userRes.data.pincode);
+				getPincodeData(userRes.data.pincode);
 			} else {
-				setEmail("User not Logged in");
+				setEmail("Please login to continue...");
 			}
 		};
 		getUser();
