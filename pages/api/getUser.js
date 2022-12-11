@@ -4,6 +4,11 @@ import User from "../../models/User";
 const jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
+	if (req.method !== "POST") {
+		res.status(405).json({ success: false, data: "Invalid request" });
+		return;
+	}
+
 	try {
 		const token = req.body.token;
 		const userData = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);

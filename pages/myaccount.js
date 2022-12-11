@@ -18,7 +18,7 @@ const MyAccount = () => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+			let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -26,8 +26,8 @@ const MyAccount = () => {
 				body: JSON.stringify({ token: localStorage.getItem("token") }),
 			});
 			let userRes = await res.json();
+			console.log(userRes);
 			if (userRes.success) {
-				console.log(userRes.data);
 				setEmail(userRes.data.email);
 				setName(userRes.data.name);
 				setAddress(userRes.data.address);
