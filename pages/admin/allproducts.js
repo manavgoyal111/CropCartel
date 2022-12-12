@@ -8,19 +8,6 @@ import FullLayout from "../../src/layouts/FullLayout";
 import theme from "../../src/theme/theme";
 
 const AllProducts = ({ products }) => {
-	console.log(products);
-	// const products = [
-	// 	{
-	// 		id: "1",
-	// 		name: "Sunil Joshi",
-	// 		post: "Web Designer",
-	// 		pname: "Elite Admin",
-	// 		priority: "Low",
-	// 		pbg: "primary.main",
-	// 		budget: "3.9",
-	// 	},
-	// ];
-
 	return (
 		<>
 			<Head>
@@ -41,8 +28,6 @@ const AllProducts = ({ products }) => {
 	);
 };
 
-export default AllProducts;
-
 export async function getServerSideProps(context) {
 	if (!mongoose.connections[0].readyState) {
 		await mongoose.connect(process.env.MONGO_URI);
@@ -52,3 +37,5 @@ export async function getServerSideProps(context) {
 
 	return { props: { products: JSON.parse(JSON.stringify(products)) } };
 }
+
+export default AllProducts;

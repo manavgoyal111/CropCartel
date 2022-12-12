@@ -131,6 +131,6 @@ const MyApp = ({ Component, pageProps }) => {
 export default MyApp;
 
 // Token expired then logout
-// Change city to district name
+// Change city to district name, Add "admin" in User model ro verify if admin
 // Make Dashboard
 // Send reset email

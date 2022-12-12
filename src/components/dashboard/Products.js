@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import {
 	Typography,
 	Box,
@@ -11,13 +12,12 @@ import {
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 
-const Products = ({products}) => {
+const Products = ({ products }) => {
 	return (
-		<BaseCard title="Product Perfomance">
+		<BaseCard title="All Products">
 			<Table
 				aria-label="simple table"
 				sx={{
-					mt: 3,
 					whiteSpace: "nowrap",
 				}}
 			>
@@ -52,63 +52,29 @@ const Products = ({products}) => {
 				</TableHead>
 				<TableBody>
 					{products.map((product) => (
-						<TableRow key={product.name}>
+						<TableRow key={product._id}>
 							<TableCell>
 								<Typography
 									sx={{
-										fontSize: "15px",
-										fontWeight: "500",
+										fontWeight: "600",
 									}}
 								>
-									{product.id}
+									{product.title}
 								</Typography>
 							</TableCell>
 							<TableCell>
-								<Box
-									sx={{
-										display: "flex",
-										alignItems: "center",
-									}}
-								>
-									<Box>
-										<Typography
-											variant="h6"
-											sx={{
-												fontWeight: "600",
-											}}
-										>
-											{product.name}
-										</Typography>
-										<Typography
-											color="textSecondary"
-											sx={{
-												fontSize: "13px",
-											}}
-										>
-											{product.post}
-										</Typography>
-									</Box>
-								</Box>
+								<Typography>{product.slug}</Typography>
 							</TableCell>
 							<TableCell>
-								<Typography color="textSecondary" variant="h6">
-									{product.pname}
+								<Image src={product.img} alt="Product" height={40} width={40} />
+							</TableCell>
+							<TableCell>
+								<Typography>
+									{product.size}/{product.color}
 								</Typography>
-							</TableCell>
-							<TableCell>
-								<Chip
-									sx={{
-										pl: "4px",
-										pr: "4px",
-										backgroundColor: product.pbg,
-										color: "#fff",
-									}}
-									size="small"
-									label={product.priority}
-								></Chip>
 							</TableCell>
 							<TableCell align="right">
-								<Typography variant="h6">${product.budget}k</Typography>
+								<Typography variant="h6">₹{product.price}</Typography>
 							</TableCell>
 						</TableRow>
 					))}
