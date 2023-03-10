@@ -5,8 +5,8 @@ const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>SareeWear - Wear the Saree</title>
-				<meta name="description" content="sareewear.com - Wear the Saree." />
+				<title>Trendz with Threadz - Wear the Saree</title>
+				<meta name="description" content="Trendz with Threadz.com - Wear the Saree." />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
@@ -18,10 +18,11 @@ const Home = () => {
 				<div className="container px-5 py-24 mx-auto">
 					<div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
 						<h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-							Wear the saree with SareeWear.com
+							Wear the confidence with Trendz with Threadz.com
 						</h1>
 						<p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-							Wear whatever you want? Whenever you want? Wear the saree with style?
+							Wear whatever you want? Whenever you want? Wear the confidence with
+							style?
 						</p>
 						<p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet

@@ -8,7 +8,7 @@ const Saree = ({ products }) => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>Saree | SareeWear</title>
+				<title>Saree | Trendz with Threadz</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">

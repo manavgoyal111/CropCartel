@@ -8,7 +8,7 @@ const Cloth = ({ products }) => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>Cloth | SareeWear</title>
+				<title>Cloth | Trendz with Threadz</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">

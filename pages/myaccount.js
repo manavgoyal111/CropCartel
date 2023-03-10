@@ -144,7 +144,7 @@ const MyAccount = () => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>My Account | SareeWear</title>
+				<title>My Account | Trendz with Threadz</title>
 			</Head>
 
 			<ToastContainer

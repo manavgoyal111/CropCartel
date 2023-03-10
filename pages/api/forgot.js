@@ -64,7 +64,7 @@ const handler = async (req, res) => {
 						},
 					],
 					from: {
-						name: "SareeWear",
+						name: "Trendz with Threadz",
 						email: "manav.goyal.dev@gmail.com",
 					},
 					cc: [

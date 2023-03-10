@@ -22,7 +22,7 @@ const MyOrder = ({ order, clearCart }) => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>Order | SareeWear</title>
+				<title>Order | Trendz with Threadz</title>
 			</Head>
 
 			<section className="text-gray-600 body-font overflow-hidden">

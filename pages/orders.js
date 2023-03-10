@@ -31,7 +31,7 @@ const Orders = () => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>Orders | SareeWear</title>
+				<title>Orders | Trendz with Threadz</title>
 			</Head>
 
 			<div className="container mx-auto w-11/12">

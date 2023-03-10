@@ -86,7 +86,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 	return (
 		<div>
 			<Head>
-				<title>Product | SareeWear</title>
+				<title>Product | Trendz with Threadz</title>
 			</Head>
 
 			<ToastContainer

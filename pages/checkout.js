@@ -111,7 +111,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				key: orderKeyRes,
 				amount: data.amount,
 				currency: "INR",
-				name: "SareeWear",
+				name: "Trendz with Threadz",
 				description: "Wear a Saree with Style",
 				image: "14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
 				order_id: data.id,
@@ -155,7 +155,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					name="viewport"
 					content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
 				/>
-				<title>Checkout | SareeWear.com</title>
+				<title>Checkout | Trendz with Threadz.com</title>
 			</Head>
 
 			<Script
@@ -345,14 +345,14 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<span className="font-bold">Subtotal: ₹{subTotal}</span>
 				</div>
 				<div className="mx-4">
-					<button
+					{/* <button
 						onClick={initiatePayment}
 						disabled={disabled}
 						className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm disabled:bg-pink-300"
 					>
 						<BsFillBagCheckFill className="mr-2" />
 						Pay ₹{subTotal}
-					</button>
+					</button> */}
 				</div>
 			</div>
 		</div>

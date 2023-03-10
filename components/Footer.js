@@ -9,18 +9,11 @@ const Footer = () => {
 					<Link href="/">
 						<a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
 							<span className="ml-3 text-xl text-pink-500">
-								<Image
-									src="/3.png"
-									alt="Home"
-									height={40}
-									width={200}
-								/>
+								<Image src="/3.png" alt="Home" height={40} width={200} />
 							</span>
 						</a>
 					</Link>
-					<p className="mt-2 text-sm text-gray-500 px-4">
-						Wear the Saree
-					</p>
+					<p className="mt-2 text-sm text-gray-500 px-4">Wear the Saree</p>
 				</div>
 				<div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
 					<div className="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -30,30 +23,22 @@ const Footer = () => {
 						<nav className="list-none mb-10">
 							<li>
 								<Link href="/saree">
-									<a className="text-gray-600 hover:text-gray-800">
-										Sarees
-									</a>
+									<a className="text-gray-600 hover:text-gray-800">Sarees</a>
 								</Link>
 							</li>
 							<li>
 								<Link href="/hoodies">
-									<a className="text-gray-600 hover:text-gray-800">
-										Hoodies
-									</a>
+									<a className="text-gray-600 hover:text-gray-800">Hoodies</a>
 								</Link>
 							</li>
 							<li>
 								<Link href="/stickers">
-									<a className="text-gray-600 hover:text-gray-800">
-										Stickers
-									</a>
+									<a className="text-gray-600 hover:text-gray-800">Stickers</a>
 								</Link>
 							</li>
 							<li>
 								<Link href="/mugs">
-									<a className="text-gray-600 hover:text-gray-800">
-										Mugs
-									</a>
+									<a className="text-gray-600 hover:text-gray-800">Mugs</a>
 								</Link>
 							</li>
 						</nav>
@@ -65,27 +50,19 @@ const Footer = () => {
 						<nav className="list-none mb-10">
 							<li>
 								<Link href="/contact">
-									<a className="text-gray-600 hover:text-gray-800">
-										Contact
-									</a>
+									<a className="text-gray-600 hover:text-gray-800">Contact</a>
 								</Link>
 							</li>
 							<li>
 								<Link href="/about">
-									<a className="text-gray-600 hover:text-gray-800">
-										About Us
-									</a>
+									<a className="text-gray-600 hover:text-gray-800">About Us</a>
 								</Link>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Shipping
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Shipping</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									FAQ
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">FAQ</a>
 							</li>
 						</nav>
 					</div>
@@ -95,24 +72,16 @@ const Footer = () => {
 						</h2>
 						<nav className="list-none mb-10">
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Facebook
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Facebook</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Instagram
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Instagram</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Twitter
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Twitter</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									YouTube
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">YouTube</a>
 							</li>
 						</nav>
 					</div>
@@ -122,24 +91,16 @@ const Footer = () => {
 						</h2>
 						<nav className="list-none mb-10">
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Return Policy
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Return Policy</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Terms Of Use
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Terms Of Use</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Security
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Security</a>
 							</li>
 							<li>
-								<a className="text-gray-600 hover:text-gray-800">
-									Privacy
-								</a>
+								<a className="text-gray-600 hover:text-gray-800">Privacy</a>
 							</li>
 						</nav>
 					</div>
@@ -148,7 +109,7 @@ const Footer = () => {
 			<div className="bg-gray-100">
 				<div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
 					<p className="text-gray-500 text-sm text-center sm:text-left">
-						© 2022 SareeWear.com — All Rights Reserved
+						© 2022 Trendz with Threadz.com — All Rights Reserved
 					</p>
 					<span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
 						<a className="text-gray-500">
@@ -185,14 +146,7 @@ const Footer = () => {
 								className="w-5 h-5"
 								viewBox="0 0 24 24"
 							>
-								<rect
-									width="20"
-									height="20"
-									x="2"
-									y="2"
-									rx="5"
-									ry="5"
-								></rect>
+								<rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
 								<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
 							</svg>
 						</a>
@@ -210,12 +164,7 @@ const Footer = () => {
 									stroke="none"
 									d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
 								></path>
-								<circle
-									cx="4"
-									cy="4"
-									r="2"
-									stroke="none"
-								></circle>
+								<circle cx="4" cy="4" r="2" stroke="none"></circle>
 							</svg>
 						</a>
 					</span>

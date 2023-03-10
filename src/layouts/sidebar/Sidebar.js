@@ -38,11 +38,8 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 			<div className="logo mr-auto md:mx-5">
 				<NextLink href="/admin">
 					<a className="flex justify-center text-pink-500 font-bold">
-						<Typography
-							variant="h3"
-							fontWeight="400"
-						>
-							SareeWear Admin
+						<Typography variant="h3" fontWeight="400">
+							Trendz with Threadz Admin
 						</Typography>
 					</a>
 				</NextLink>

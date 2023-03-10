@@ -12,7 +12,7 @@ const Index = () => {
 	return (
 		<>
 			<Head>
-				<title>Dashboard | SareeWear</title>
+				<title>Dashboard | Trendz with Threadz</title>
 				<meta name="description" content="Sareewear Dashboard" />
 			</Head>
 

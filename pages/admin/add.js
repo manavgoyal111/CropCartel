@@ -43,7 +43,7 @@ const Add = () => {
 	return (
 		<>
 			<Head>
-				<title>Add | Dashboard | SareeWear</title>
+				<title>Add | Dashboard | Trendz with Threadz</title>
 				<meta name="description" content="Sareewear Dashboard Add products" />
 			</Head>
 
