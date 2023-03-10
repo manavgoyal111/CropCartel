@@ -39,7 +39,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 				<NextLink href="/admin">
 					<a className="flex justify-center text-pink-500 font-bold">
 						<Typography variant="h3" fontWeight="400">
-							Trendz with Threadz Admin
+							Admin
 						</Typography>
 					</a>
 				</NextLink>

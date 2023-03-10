@@ -9,11 +9,12 @@ const Footer = () => {
 					<Link href="/">
 						<a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
 							<span className="ml-3 text-xl text-pink-500">
-								<Image src="/3.png" alt="Home" height={40} width={200} />
+								{/* <Image src="/3.png" alt="Home" height={40} width={200} /> */}
+								Trendz with Threadz
 							</span>
 						</a>
 					</Link>
-					<p className="mt-2 text-sm text-gray-500 px-4">Wear the Saree</p>
+					<p className="mt-2 text-sm text-gray-500 px-4">Wear the Style</p>
 				</div>
 				<div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
 					<div className="lg:w-1/4 md:w-1/2 w-full px-4">

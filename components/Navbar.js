@@ -102,8 +102,9 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			>
 				<div className="logo mr-auto md:mx-5">
 					<Link href="/">
-						<a className="flex justify-center text-pink-500 font-bold">
-							<Image src="/2.png" alt="Home" height={40} width={40} />
+						<a className="flex justify-center text-pink-500 font-bold my-2">
+							{/* <Image src="/2.png" alt="Home" height={40} width={40} /> */}
+							Trendz with Threadz
 						</a>
 					</Link>
 				</div>

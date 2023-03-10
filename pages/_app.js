@@ -133,4 +133,5 @@ export default MyApp;
 // Token expired then logout
 // Change city to district name, Add "admin" in User model ro verify if admin
 // Make Dashboard
+// Move components folder into src folder components
 // Send reset email
