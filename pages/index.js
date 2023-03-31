@@ -5,7 +5,7 @@ const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>Trendz with Threadz - Wear the Saree</title>
+				<title>Trendz with Threadz - Wear with Style</title>
 				<meta name="description" content="Trendz with Threadz.com - Wear the Saree." />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>

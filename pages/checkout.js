@@ -18,13 +18,18 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ token: localStorage.getItem("token") }),
-			});
+			const res = await fetch(
+				process.env.NODE_ENV === "development"
+					? `${process.env.NEXT_PUBLIC_HOST}/api/getuser`
+					: `${process.env.NEXT_PUBLIC_HOST}/api/getUser`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ token: localStorage.getItem("token") }),
+				}
+			);
 			const userRes = await res.json();
 			if (userRes.success) {
 				setEmail(userRes.data.email);
@@ -87,24 +92,40 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 	};
 
 	const initiatePayment = async () => {
-		const orderData = { subTotal, cart, email, name, phone, pincode, address, city, state };
-		const orderRes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(orderData),
-		});
+		const orderData = {
+			subTotal,
+			cart,
+			email,
+			name,
+			phone,
+			pincode,
+			address,
+			city,
+			state,
+		};
+		const orderRes = await fetch(
+			`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(orderData),
+			}
+		);
 		const orderDataRes = await orderRes.json();
 		const { success, data, cartClear } = orderDataRes;
 
 		if (success) {
-			const orderKey = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+			const orderKey = await fetch(
+				`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
 			const orderKeyRes = await orderKey.json();
 
 			const options = {
@@ -113,7 +134,8 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				currency: "INR",
 				name: "Trendz with Threadz",
 				description: "Wear a Saree with Style",
-				image: "14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
+				image:
+					"14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
 				order_id: data.id,
 				callback_url: `${process.env.NEXT_PUBLIC_HOST}/api/posttransaction`,
 				prefill: {
@@ -197,7 +219,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label htmlFor="email" className="leading-7 text-sm text-gray-600">
+							<label
+								htmlFor="email"
+								className="leading-7 text-sm text-gray-600"
+							>
 								Email
 							</label>
 							<input
@@ -213,7 +238,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				</div>
 				<div className="px-2 w-full">
 					<div className="mb-4">
-						<label htmlFor="address" className="leading-7 text-sm text-gray-600">
+						<label
+							htmlFor="address"
+							className="leading-7 text-sm text-gray-600"
+						>
 							Address
 						</label>
 						<textarea
@@ -230,7 +258,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				<div className="mx-auto flex">
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label htmlFor="phone" className="leading-7 text-sm text-gray-600">
+							<label
+								htmlFor="phone"
+								className="leading-7 text-sm text-gray-600"
+							>
 								Phone
 							</label>
 							<input
@@ -247,7 +278,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label htmlFor="pincode" className="leading-7 text-sm text-gray-600">
+							<label
+								htmlFor="pincode"
+								className="leading-7 text-sm text-gray-600"
+							>
 								Pincode
 							</label>
 							<input
@@ -265,7 +299,10 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				<div className="mx-auto flex">
 					<div className="px-2 w-1/2">
 						<div className="mb-4">
-							<label htmlFor="state" className="leading-7 text-sm text-gray-600">
+							<label
+								htmlFor="state"
+								className="leading-7 text-sm text-gray-600"
+							>
 								State
 							</label>
 							<input
@@ -295,7 +332,9 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					</div>
 				</div>
 
-				<h2 className="font-semibold text-xl my-2">2. Review Cart Items & Pay</h2>
+				<h2 className="font-semibold text-xl my-2">
+					2. Review Cart Items & Pay
+				</h2>
 				<div className="sideCart bg-pink-100 p-6 m-2 transform z-10">
 					<ol className="list-decimal font-semibold">
 						{Object.keys(cart).length === 0 && (
@@ -345,14 +384,14 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<span className="font-bold">Subtotal: ₹{subTotal}</span>
 				</div>
 				<div className="mx-4">
-					{/* <button
+					<button
 						onClick={initiatePayment}
 						disabled={disabled}
 						className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm disabled:bg-pink-300"
 					>
 						<BsFillBagCheckFill className="mr-2" />
 						Pay ₹{subTotal}
-					</button> */}
+					</button>
 				</div>
 			</div>
 		</div>
