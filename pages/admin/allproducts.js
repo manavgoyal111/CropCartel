@@ -11,7 +11,7 @@ const AllProducts = ({ products }) => {
 	return (
 		<>
 			<Head>
-				<title>All Products | Dashboard | Trendz with Threadz</title>
+				<title>All Products | Dashboard | CropCartel</title>
 				<meta name="description" content="Sareewear Dashboard show All Products" />
 			</Head>
 

@@ -69,7 +69,7 @@ const ImageUploader = () => {
 	return (
 		<>
 			<Head>
-				<title>Image Uploader | Dashboard | Trendz with Threadz</title>
+				<title>Image Uploader | Dashboard | CropCartel</title>
 				<meta name="description" content="Sareewear Dashboard Image Uploader" />
 			</Head>
 

@@ -104,7 +104,8 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 					<Link href="/">
 						<a className="flex justify-center text-pink-500 font-bold my-2">
 							{/* <Image src="/2.png" alt="Home" height={40} width={40} /> */}
-							Trendz with Threadz
+							{/* CropCartel */}
+							CropCartel
 						</a>
 					</Link>
 				</div>
@@ -113,17 +114,27 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 					<ul className="flex items-center space-x-4 font-bold md:text-md">
 						<Link href="/saree">
 							<a className="hover:text-gray-800">
-								<li>Saree</li>
+								<li>Seeds</li>
 							</a>
 						</Link>
 						<Link href="/kurti">
 							<a className="hover:text-gray-800">
-								<li>Kurti</li>
+								<li>Fertilizers</li>
+							</a>
+						</Link>
+						<Link href="/plants">
+							<a className="hover:text-gray-800">
+								<li>Plants</li>
 							</a>
 						</Link>
 						<Link href="/cloths">
 							<a className="hover:text-gray-800">
-								<li>Cloths</li>
+								<li>Tools</li>
+							</a>
+						</Link>
+						<Link href="/cloths">
+							<a className="hover:text-gray-800">
+								<li>Others</li>
 							</a>
 						</Link>
 					</ul>

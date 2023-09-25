@@ -5,29 +5,36 @@ const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>Trendz with Threadz - Wear with Style</title>
-				<meta name="description" content="Trendz with Threadz.com - Wear the Saree." />
+				<title>CropCartel - Harvest the Best, Delivered Fresh!</title>
+				<meta
+					name="description"
+					content="CropCartel.com - Wear the Saree."
+				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<div className="flex justify-center w-auto">
-				<Image src="/1.jpg" alt="Home" height={600} width={1500} />
+				<Image
+					src="/home.jpg"
+					alt="Home"
+					height={600}
+					width={1500}
+				/>
 			</div>
 
 			<section className="text-gray-600 body-font">
 				<div className="container px-5 py-24 mx-auto">
 					<div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
 						<h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-							Wear the confidence with Trendz with Threadz.com
+							Harvest the Best, Delivered Fresh! with CropCartel.com
 						</h1>
 						<p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
-							Wear whatever you want? Whenever you want? Wear the confidence with
-							style?
+							Wear whatever you want? Whenever you want? Harvest the Best, Delivered Fresh!?
 						</p>
 						<p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-							repudiandae quaerat sunt ducimus explicabo maiores iste aliquam totam
-							voluptatem tenetur.
+							repudiandae quaerat sunt ducimus explicabo maiores iste aliquam
+							totam voluptatem tenetur.
 						</p>
 					</div>
 					<div className="flex flex-wrap -m-4">
@@ -50,8 +57,8 @@ const Home = () => {
 									Shooting Stars
 								</h2>
 								<p className="leading-relaxed text-base">
-									Fingerstache flexitarian street art 8-bit waist co, subway tile
-									poke farm.
+									Fingerstache flexitarian street art 8-bit waist co, subway
+									tile poke farm.
 								</p>
 							</div>
 						</div>
@@ -76,8 +83,8 @@ const Home = () => {
 									The Catalyzer
 								</h2>
 								<p className="leading-relaxed text-base">
-									Fingerstache flexitarian street art 8-bit waist co, subway tile
-									poke farm.
+									Fingerstache flexitarian street art 8-bit waist co, subway
+									tile poke farm.
 								</p>
 							</div>
 						</div>
@@ -101,8 +108,8 @@ const Home = () => {
 									Neptune
 								</h2>
 								<p className="leading-relaxed text-base">
-									Fingerstache flexitarian street art 8-bit waist co, subway tile
-									poke farm.
+									Fingerstache flexitarian street art 8-bit waist co, subway
+									tile poke farm.
 								</p>
 							</div>
 						</div>
@@ -125,8 +132,8 @@ const Home = () => {
 									Melanchole
 								</h2>
 								<p className="leading-relaxed text-base">
-									Fingerstache flexitarian street art 8-bit waist co, subway tile
-									poke farm.
+									Fingerstache flexitarian street art 8-bit waist co, subway
+									tile poke farm.
 								</p>
 							</div>
 						</div>
@@ -149,8 +156,8 @@ const Home = () => {
 									Bunker
 								</h2>
 								<p className="leading-relaxed text-base">
-									Fingerstache flexitarian street art 8-bit waist co, subway tile
-									poke farm.
+									Fingerstache flexitarian street art 8-bit waist co, subway
+									tile poke farm.
 								</p>
 							</div>
 						</div>
@@ -173,8 +180,8 @@ const Home = () => {
 									Ramona Falls
 								</h2>
 								<p className="leading-relaxed text-base">
-									Fingerstache flexitarian street art 8-bit waist co, subway tile
-									poke farm.
+									Fingerstache flexitarian street art 8-bit waist co, subway
+									tile poke farm.
 								</p>
 							</div>
 						</div>

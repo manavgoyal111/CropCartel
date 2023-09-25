@@ -86,7 +86,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 	return (
 		<div>
 			<Head>
-				<title>Product | Trendz with Threadz</title>
+				<title>Product | CropCartel</title>
 			</Head>
 
 			<ToastContainer
@@ -113,7 +113,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 						/>
 						<div className="lg:w-1/2 w-full lg:pl-16 lg:py-6 mt-6 lg:mt-0">
 							<h2 className="text-sm title-font text-gray-500 tracking-widest">
-								SAREEWEAR
+								E-Agri
 							</h2>
 							<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
 								{product.title} ({product.size}/{product.color})

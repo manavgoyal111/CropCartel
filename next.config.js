@@ -9,6 +9,8 @@ const nextConfig = {
 			"c-static.smartphoto.com",
 			"dummyimage.com",
 			"images.unsplash.com",
+			"plus.unsplash.com",
+			"images.pexels.com",
 		],
 	},
 };

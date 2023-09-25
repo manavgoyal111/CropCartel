@@ -1,1 +1,1 @@
-[Trendz with Threadz](https://trendz-with-threadz.vercel.app/)
+[CropCartel](https://trendz-with-threadz.vercel.app/)

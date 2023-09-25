@@ -8,7 +8,7 @@ const Kurti = ({ products }) => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>Kurti | Trendz with Threadz</title>
+				<title>Kurti | CropCartel</title>
 			</Head>
 
 			<section className="text-gray-600 body-font">

@@ -132,7 +132,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				key: orderKeyRes,
 				amount: data.amount,
 				currency: "INR",
-				name: "Trendz with Threadz",
+				name: "CropCartel",
 				description: "Wear a Saree with Style",
 				image:
 					"14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hlY2tvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
@@ -177,7 +177,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					name="viewport"
 					content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
 				/>
-				<title>Checkout | Trendz with Threadz.com</title>
+				<title>Checkout | CropCartel.com</title>
 			</Head>
 
 			<Script

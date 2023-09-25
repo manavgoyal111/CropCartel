@@ -9,7 +9,7 @@ const AllOrders = () => {
 	return (
 		<>
 			<Head>
-				<title>All Orders | Dashboard | Trendz with Threadz</title>
+				<title>All Orders | Dashboard | CropCartel</title>
 				<meta name="description" content="Sareewear Dashboard All Orders" />
 			</Head>
 

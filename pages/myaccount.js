@@ -18,7 +18,7 @@ const MyAccount = () => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -144,7 +144,7 @@ const MyAccount = () => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>My Account | Trendz with Threadz</title>
+				<title>My Account | CropCartel</title>
 			</Head>
 
 			<ToastContainer
