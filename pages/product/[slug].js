@@ -63,16 +63,16 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 
 	if (error == 404) {
 		return (
-			<main className="h-screen w-full flex flex-col justify-center items-center bg-pink-400">
+			<main className="h-screen w-full flex flex-col justify-center items-center bg-green-400">
 				<h1 className="text-9xl font-extrabold text-white tracking-widest">404</h1>
-				<div className="bg-pink-600 px-2 text-sm rounded rotate-12 absolute">
+				<div className="bg-green-600 px-2 text-sm rounded rotate-12 absolute">
 					Page Not Found
 				</div>
 				<button className="mt-5">
 					<a className="relative inline-block text-sm font-medium text-gray-600 group active:text-gray-800 focus:outline-none focus:ring">
-						<span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-pink-800 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+						<span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-green-800 group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-						<span className="relative block px-8 py-3 bg-pink-600 border border-current">
+						<span className="relative block px-8 py-3 bg-green-600 border border-current">
 							<Link href="/">
 								<a>Go Home</a>
 							</Link>
@@ -126,7 +126,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-pink-500"
+										className="w-4 h-4 text-green-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -137,7 +137,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-pink-500"
+										className="w-4 h-4 text-green-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -148,7 +148,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-pink-500"
+										className="w-4 h-4 text-green-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -159,7 +159,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-pink-500"
+										className="w-4 h-4 text-green-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -170,7 +170,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										className="w-4 h-4 text-pink-500"
+										className="w-4 h-4 text-green-500"
 										viewBox="0 0 24 24"
 									>
 										<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -296,7 +296,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 											onChange={(e) => {
 												refreshVariant(color, e.target.value);
 											}}
-											className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10"
+											className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-green-200 focus:border-green-500 text-base pl-3 pr-10"
 										>
 											{color &&
 												Object.keys(variants[color]).includes("S") && (
@@ -350,7 +350,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										buyNow(slug, 1, product.price, product.title, size, color);
 									}}
 									disabled={product.availableQty <= 0 ? true : false}
-									className="flex ml-8 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded disabled:bg-pink-300"
+									className="flex ml-8 text-white bg-green-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-green-600 rounded disabled:bg-green-300"
 								>
 									Buy Now
 								</button>
@@ -366,7 +366,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 										);
 									}}
 									disabled={product.availableQty <= 0 ? true : false}
-									className="flex ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded disabled:bg-pink-300"
+									className="flex ml-4 text-white bg-green-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-green-600 rounded disabled:bg-green-300"
 								>
 									Add to Cart
 								</button>
@@ -392,7 +392,7 @@ const Post = ({ addToCart, buyNow, product, variants, error }) => {
 								/>
 								<button
 									onClick={checkServiceability}
-									className="text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded"
+									className="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded"
 								>
 									Check
 								</button>

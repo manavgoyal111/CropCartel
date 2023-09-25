@@ -213,7 +213,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								name="name"
 								value={name}
 								onChange={handleChange}
-								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+								className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
@@ -231,7 +231,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								name="email"
 								value={email}
 								readOnly
-								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+								className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
@@ -251,7 +251,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 							rows="2"
 							value={address}
 							onChange={handleChange}
-							className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+							className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 						/>
 					</div>
 				</div>
@@ -272,7 +272,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								min={0}
 								onChange={handleChange}
 								placeholder="Your 10-Digit Phone Number"
-								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+								className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
@@ -291,7 +291,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								value={pincode}
 								min={0}
 								onChange={handleChange}
-								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+								className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
@@ -311,7 +311,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								name="state"
 								value={state}
 								onChange={handleChange}
-								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+								className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
@@ -326,7 +326,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 								name="city"
 								value={city}
 								onChange={handleChange}
-								className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+								className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
 							/>
 						</div>
 					</div>
@@ -335,7 +335,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 				<h2 className="font-semibold text-xl my-2">
 					2. Review Cart Items & Pay
 				</h2>
-				<div className="sideCart bg-pink-100 p-6 m-2 transform z-10">
+				<div className="sideCart bg-green-100 p-6 m-2 transform z-10">
 					<ol className="list-decimal font-semibold">
 						{Object.keys(cart).length === 0 && (
 							<div className="my-4 font-semibold">Your cart is empty!</div>
@@ -359,7 +359,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 														cart[k].variant
 													);
 												}}
-												className="cursor-pointer text-pink-500"
+												className="cursor-pointer text-green-500"
 											/>
 											<span className="mx-2 text-sm">{cart[k].qty}</span>
 											<AiFillPlusCircle
@@ -373,7 +373,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 														cart[k].variant
 													);
 												}}
-												className="cursor-pointer text-pink-500"
+												className="cursor-pointer text-green-500"
 											/>
 										</div>
 									</div>
@@ -387,7 +387,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					<button
 						onClick={initiatePayment}
 						disabled={disabled}
-						className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm disabled:bg-pink-300"
+						className="flex mx-auto items-center text-white bg-green-500 border-0 py-2 px-2 focus:outline-none hover:bg-green-600 rounded text-sm disabled:bg-green-300"
 					>
 						<BsFillBagCheckFill className="mr-2" />
 						Pay ₹{subTotal}

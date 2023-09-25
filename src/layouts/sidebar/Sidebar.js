@@ -37,7 +37,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 		<Box p={2} height="100%">
 			<div className="logo mr-auto md:mx-5">
 				<NextLink href="/admin">
-					<a className="flex justify-center text-pink-500 font-bold">
+					<a className="flex justify-center text-green-500 font-bold">
 						<Typography variant="h3" fontWeight="400">
 							Admin
 						</Typography>

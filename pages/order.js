@@ -85,7 +85,7 @@ const MyOrder = ({ order, clearCart }) => {
 									Subtotal: ₹{order.amount / 100}
 								</span>
 								<div className="my-6">
-									<button className="flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded">
+									<button className="flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">
 										Track Order
 									</button>
 								</div>

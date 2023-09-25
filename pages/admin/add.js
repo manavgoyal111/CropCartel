@@ -51,7 +51,7 @@ const Add = () => {
 				<FullLayout>
 					<Grid container spacing={0}>
 						<Grid item xs={12} lg={12}>
-							<BaseCard title="Add a Product" className="text-pink-500">
+							<BaseCard title="Add a Product" className="text-green-500">
 								<Stack spacing={3}>
 									<TextField
 										value={form.title}

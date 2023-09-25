@@ -61,21 +61,21 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 							<ul>
 								<Link href="/myaccount">
 									<a>
-										<li className="py-1 text-sm hover:text-pink-700 font-bold cursor-pointer">
+										<li className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer">
 											My Account
 										</li>
 									</a>
 								</Link>
 								<Link href="/orders">
 									<a>
-										<li className="py-1 text-sm hover:text-pink-700 font-bold cursor-pointer">
+										<li className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer">
 											My Orders
 										</li>
 									</a>
 								</Link>
 								<li
 									onClick={logout}
-									className="py-1 text-sm hover:text-pink-700 font-bold cursor-pointer"
+									className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer"
 								>
 									Logout
 								</li>
@@ -96,15 +96,12 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			)}
 
 			<div
-				className={`flex flex-col md:flex-row md:justify-start justify-center items-center px-5 py-2 shadow-md sticky top-0 bg-white z-10 ${
-					!sidebar && "overflow-hidden"
-				}`}
+				className={`flex flex-col md:flex-row md:justify-start justify-center items-center px-5 py-2 shadow-md sticky top-0 bg-white z-10 ${!sidebar && "overflow-hidden"
+					}`}
 			>
 				<div className="logo mr-auto md:mx-5">
 					<Link href="/">
-						<a className="flex justify-center text-pink-500 font-bold my-2">
-							{/* <Image src="/2.png" alt="Home" height={40} width={40} /> */}
-							{/* CropCartel */}
+						<a className="flex justify-center text-green-500 font-bold my-2">
 							CropCartel
 						</a>
 					</Link>
@@ -112,14 +109,14 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 
 				<nav>
 					<ul className="flex items-center space-x-4 font-bold md:text-md">
-						<Link href="/saree">
+						<Link href="/fruits">
 							<a className="hover:text-gray-800">
-								<li>Seeds</li>
+								<li>Fruits</li>
 							</a>
 						</Link>
-						<Link href="/kurti">
+						<Link href="/vegetable">
 							<a className="hover:text-gray-800">
-								<li>Fertilizers</li>
+								<li>Vegetable</li>
 							</a>
 						</Link>
 						<Link href="/plants">
@@ -127,12 +124,12 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 								<li>Plants</li>
 							</a>
 						</Link>
-						<Link href="/cloths">
+						<Link href="/tools">
 							<a className="hover:text-gray-800">
 								<li>Tools</li>
 							</a>
 						</Link>
-						<Link href="/cloths">
+						<Link href="/others">
 							<a className="hover:text-gray-800">
 								<li>Others</li>
 							</a>
@@ -144,7 +141,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 					{!user.value && (
 						<Link href="/login">
 							<a className="hover:text-gray-800">
-								<button className="flex items-center text-white bg-pink-500 border-0 py-1 px-2 mx-2 focus:outline-none hover:bg-pink-600 rounded text-sm">
+								<button className="flex items-center text-white bg-green-500 border-0 py-1 px-2 mx-2 focus:outline-none hover:bg-green-600 rounded text-sm">
 									Login
 								</button>
 							</a>
@@ -158,14 +155,13 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 
 				<div
 					ref={ref}
-					className={`sideCart absolute w-72 h-[100vh] top-0 bg-pink-100 px-8 py-10 overscroll-y-contain transition-all ${
-						sidebar ? "right-0" : "-right-96"
-					}`}
+					className={`sideCart absolute w-72 h-[100vh] top-0 bg-green-100 px-8 py-10 overscroll-y-contain transition-all ${sidebar ? "right-0" : "-right-96"
+						}`}
 				>
 					<h2 className="font-bold text-xl text-center">Shopping Cart</h2>
 					<span
 						onClick={toggleCart}
-						className="absolute top-4 right-4 cursor-pointer text-2xl text-pink-500"
+						className="absolute top-4 right-4 cursor-pointer text-2xl text-green-500"
 					>
 						<AiFillCloseCircle />
 					</span>
@@ -192,7 +188,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 														cart[k].variant
 													);
 												}}
-												className="cursor-pointer text-pink-500"
+												className="cursor-pointer text-green-500"
 											/>
 											<span className="mx-2 text-sm">{cart[k].qty}</span>
 											<AiFillPlusCircle
@@ -206,7 +202,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 														cart[k].variant
 													);
 												}}
-												className="cursor-pointer text-pink-500"
+												className="cursor-pointer text-green-500"
 											/>
 										</div>
 									</div>
@@ -220,7 +216,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 							<a>
 								<button
 									disabled={Object.keys(cart).length === 0}
-									className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-sm disabled:bg-pink-300"
+									className="flex mx-auto items-center text-white bg-green-500 border-0 py-2 px-4 focus:outline-none hover:bg-green-600 rounded text-sm disabled:bg-green-300"
 								>
 									<BsFillBagCheckFill className="mx-1" /> Checkout
 								</button>
@@ -229,7 +225,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 						<button
 							onClick={clearCart}
 							disabled={Object.keys(cart).length === 0}
-							className="flex mx-auto items-center text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-sm disabled:bg-pink-300"
+							className="flex mx-auto items-center text-white bg-green-500 border-0 py-2 px-4 focus:outline-none hover:bg-green-600 rounded text-sm disabled:bg-green-300"
 						>
 							Clear Cart
 						</button>
