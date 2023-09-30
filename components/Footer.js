@@ -66,13 +66,13 @@ const Footer = () => {
 								</Link>
 							</li>
 							<li>
-								<Link href="orders">
-									<a className="text-gray-600 hover:text-gray-800">Shipping</a>
+								<Link href="/track">
+									<a className="text-gray-600 hover:text-gray-800">Track</a>
 								</Link>
 							</li>
 							<li>
-								<Link href="#">
-									<a className="text-gray-600 hover:text-gray-800">FAQ</a>
+								<Link href="/others">
+									<a className="text-gray-600 hover:text-gray-800">Others</a>
 								</Link>
 							</li>
 						</nav>
@@ -83,23 +83,18 @@ const Footer = () => {
 						</h2>
 						<nav className="list-none mb-10">
 							<li>
-								<Link href="#">
+								<Link href="/policy">
 									<a className="text-gray-600 hover:text-gray-800">Return Policy</a>
 								</Link>
 							</li>
 							<li>
-								<Link href="#">
+								<Link href="/terms">
 									<a className="text-gray-600 hover:text-gray-800">Terms Of Use</a>
 								</Link>
 							</li>
 							<li>
-								<Link href="#">
-									<a className="text-gray-600 hover:text-gray-800">Security</a>
-								</Link>
-							</li>
-							<li>
-								<Link href="#">
-									<a className="text-gray-600 hover:text-gray-800">Privacy</a>
+								<Link href="/disclaimer">
+									<a className="text-gray-600 hover:text-gray-800">Disclaimer</a>
 								</Link>
 							</li>
 						</nav>

@@ -131,13 +131,12 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// Update footer
 // Make components/dashboard
 // Change city to district name, Add "admin" in User model ro verify if admin
+// /contact => Make Contact from send a mail
 // Token expired then logout
 // Send reset email
 // getUser name problem with prod and dev for getting data
-// /contact => Make Contact from send a mail
 
 // Color Schema:
 // Green (#3CB371)
