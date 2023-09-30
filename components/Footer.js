@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const Footer = () => {
 	return (
@@ -9,7 +8,6 @@ const Footer = () => {
 					<Link href="/">
 						<a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
 							<span className="ml-3 text-xl text-green-500">
-								{/* <Image src="/3.png" alt="Home" height={40} width={200} /> */}
 								CropCartel
 							</span>
 						</a>
@@ -22,26 +20,34 @@ const Footer = () => {
 							SHOP
 						</h2>
 						<nav className="list-none mb-10">
-							<li><Link href="/fruits">
-								<a className="text-gray-600 hover:text-gray-800">
-									Fruits
-								</a>
-							</Link></li>
-							<li><Link href="/vegetable">
-								<a className="text-gray-600 hover:text-gray-800">
-									Vegetable
-								</a>
-							</Link></li>
-							<li><Link href="/plants">
-								<a className="text-gray-600 hover:text-gray-800">
-									Plants
-								</a>
-							</Link></li>
-							<li><Link href="/tools">
-								<a className="text-gray-600 hover:text-gray-800">
-									Tools
-								</a>
-							</Link></li>
+							<li>
+								<Link href="/fruits">
+									<a className="text-gray-600 hover:text-gray-800">
+										Fruits
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/vegetable">
+									<a className="text-gray-600 hover:text-gray-800">
+										Vegetables
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/plants">
+									<a className="text-gray-600 hover:text-gray-800">
+										Plants
+									</a>
+								</Link>
+							</li>
+							<li>
+								<Link href="/tools">
+									<a className="text-gray-600 hover:text-gray-800">
+										Tools
+									</a>
+								</Link>
+							</li>
 						</nav>
 					</div>
 					<div className="lg:w-1/3 md:w-1/2 w-full px-4">
@@ -103,7 +109,7 @@ const Footer = () => {
 			<div className="bg-gray-100">
 				<div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
 					<p className="text-gray-500 text-sm text-center sm:text-left">
-						© 2023 CropCartel.com — All Rights Reserved
+						© 2023 CropCartel — All Rights Reserved
 					</p>
 					<span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
 						<a className="text-gray-500" href="https://github.com/manavgoyal111" target="_blank" rel="noreferrer">

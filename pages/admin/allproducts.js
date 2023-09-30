@@ -12,7 +12,7 @@ const AllProducts = ({ products }) => {
 		<>
 			<Head>
 				<title>All Products | Dashboard | CropCartel</title>
-				<meta name="description" content="Sareewear Dashboard show All Products" />
+				<meta name="description" content="CropCartel Dashboard show All Products" />
 			</Head>
 
 			<ThemeProvider theme={theme}>

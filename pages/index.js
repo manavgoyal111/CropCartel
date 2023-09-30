@@ -8,7 +8,7 @@ const Home = () => {
 				<title>CropCartel - Harvest the Best, Delivered Fresh!</title>
 				<meta
 					name="description"
-					content="CropCartel.com - Wear the Saree."
+					content="CropCartel - Wear the Saree."
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
@@ -26,7 +26,7 @@ const Home = () => {
 				<div className="container px-5 py-24 mx-auto">
 					<div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
 						<h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-							Harvest the Best, Delivered Fresh! with CropCartel.com
+							Harvest the Best, Delivered Fresh! with CropCartel
 						</h1>
 						<p className="lg:w-1/2 w-full leading-relaxed text-gray-500">
 							Explore a world of farm-fresh goodness brought directly to your doorstep.
@@ -58,7 +58,7 @@ const Home = () => {
 								</h2>
 								<p className="leading-relaxed text-base">
 									Our farmers take pride in delivering the freshest produce from their
-									fields straight to your home. Taste the difference with CropCartel.com.
+									fields straight to your home. Taste the difference with CropCartel.
 								</p>
 							</div>
 						</div>

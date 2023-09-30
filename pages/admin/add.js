@@ -44,7 +44,7 @@ const Add = () => {
 		<>
 			<Head>
 				<title>Add | Dashboard | CropCartel</title>
-				<meta name="description" content="Sareewear Dashboard Add products" />
+				<meta name="description" content="CropCartel Dashboard Add products" />
 			</Head>
 
 			<ThemeProvider theme={theme}>

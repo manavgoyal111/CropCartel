@@ -26,7 +26,7 @@ const handler = async (req, res) => {
 				});
 				await forgot.save();
 
-				const emailBody = `We have sent you this email in response to your request to reset your password on Sareewear.com.
+				const emailBody = `We have sent you this email in response to your request to reset your password on CropCartel.
                 To reset your password, please follow the link below:
                 <a href="${process.env.NEXT_PUBLIC_HOST}/forgot?resetToken=${resetToken}&email=${req.body.email}">Click Here to Reset your Password</a>
                 <br/><br/>

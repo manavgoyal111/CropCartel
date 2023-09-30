@@ -3,7 +3,6 @@ import components from "./ComponentOverRide";
 import shadows from "./Shadows";
 import typography from "./Typoraphy";
 
-// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {

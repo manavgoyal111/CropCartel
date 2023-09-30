@@ -70,7 +70,7 @@ const ImageUploader = () => {
 		<>
 			<Head>
 				<title>Image Uploader | Dashboard | CropCartel</title>
-				<meta name="description" content="Sareewear Dashboard Image Uploader" />
+				<meta name="description" content="CropCartel Dashboard Image Uploader" />
 			</Head>
 
 			<ThemeProvider theme={theme}>

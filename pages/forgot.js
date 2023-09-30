@@ -116,7 +116,7 @@ const Forgot = () => {
 	return (
 		<div className="min-h-screen">
 			<Head>
-				<title>Forgot | CropCartel.com</title>
+				<title>Forgot | CropCartel</title>
 			</Head>
 
 			<ToastContainer

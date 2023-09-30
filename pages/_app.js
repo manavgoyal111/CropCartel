@@ -131,12 +131,14 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// Token expired then logout
-// Change city to district name, Add "admin" in User model ro verify if admin
 // Make Dashboard
-// Move components folder into src folder components
+// Add weather app in admin panel & a add product page
+// Change city to district name, Add "admin" in User model ro verify if admin
+// Move components folder into src folder components or vice versa
+// Token expired then logout
 // Send reset email
 // getUser name problem with prod and dev for getting data
+// /contact => Make Contact from send a mail
 
 // Color Schema:
 // Green (#3CB371)

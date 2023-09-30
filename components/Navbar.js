@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import {
 	AiOutlineShoppingCart,
 	AiFillCloseCircle,
@@ -33,6 +32,8 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			"/forgot",
 			"/signup",
 			"/admin",
+			"/about",
+			"/contact",
 			"/",
 		];
 		if (exempted.includes(router.pathname)) {
@@ -70,6 +71,13 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 									<a>
 										<li className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer">
 											My Orders
+										</li>
+									</a>
+								</Link>
+								<Link href="/admin">
+									<a>
+										<li className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer">
+											Admin
 										</li>
 									</a>
 								</Link>
@@ -116,7 +124,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 						</Link>
 						<Link href="/vegetable">
 							<a className="hover:text-gray-800">
-								<li>Vegetable</li>
+								<li>Vegetables</li>
 							</a>
 						</Link>
 						<Link href="/plants">

@@ -177,7 +177,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subTotal }) => {
 					name="viewport"
 					content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
 				/>
-				<title>Checkout | CropCartel.com</title>
+				<title>Checkout | CropCartel</title>
 			</Head>
 
 			<Script
