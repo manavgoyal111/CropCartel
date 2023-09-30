@@ -63,7 +63,7 @@ const AddProd = () => {
 		<>
 			<Head>
 				<title>Add Product | Admin | Uniconnect</title>
-				<meta name="description" content="Admin Dashboard for adding Product" />
+				<meta name="description" content="Admin Dashboard page for adding Product" />
 			</Head>
 
 			<ThemeProvider theme={theme}>

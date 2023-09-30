@@ -1,7 +1,6 @@
 import React from "react";
 import { experimentalStyled, useMediaQuery, Container, Box } from "@mui/material";
-import Header from "./header/Header";
-import Sidebar from "./sidebar/Sidebar";
+import Sidebar from "./Sidebar";
 
 const MainWrapper = experimentalStyled("div")(() => ({
 	display: "flex",
@@ -30,13 +29,6 @@ const FullLayout = ({ children }) => {
 	const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 	return (
 		<MainWrapper>
-			<Header
-				sx={{
-					paddingLeft: isSidebarOpen && lgUp ? "265px" : "",
-					backgroundColor: "#fbfbfb",
-				}}
-				toggleMobileSidebar={() => setMobileSidebarOpen(true)}
-			/>
 			<Sidebar
 				isSidebarOpen={isSidebarOpen}
 				isMobileSidebarOpen={isMobileSidebarOpen}

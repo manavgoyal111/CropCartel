@@ -1,22 +1,19 @@
 import React from "react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import {
 	Box,
 	Drawer,
 	useMediaQuery,
 	List,
-	Link,
-	Button,
 	Typography,
 	ListItem,
-	Collapse,
 	ListItemIcon,
 	ListItemText,
 } from "@mui/material";
 import FeatherIcon from "feather-icons-react";
 import Menuitems from "./MenuItems";
-import { useRouter } from "next/router";
 
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 	const [open, setOpen] = React.useState(true);
@@ -36,10 +33,10 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 	const SidebarContent = (
 		<Box p={2} height="100%">
 			<div className="logo mr-auto md:mx-5">
-				<NextLink href="/admin">
+				<NextLink href="/">
 					<a className="flex justify-center text-green-500 font-bold">
 						<Typography variant="h3" fontWeight="400">
-							Admin
+							CropCartel
 						</Typography>
 					</a>
 				</NextLink>
@@ -59,7 +56,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
 										...(location === item.href && {
 											color: "white",
 											backgroundColor: (theme) =>
-												`${theme.palette.primary.main}!important`,
+												`${theme.palette.success.main}!important`,
 										}),
 									}}
 								>

@@ -5,6 +5,11 @@ import typography from "./Typoraphy";
 
 const theme = createTheme({
   palette: {
+    success: {
+      main: "#3CB371",
+      dark: "#000000",
+      contrastText: "#ffffff",
+    },
     primary: {
       main: "#03c9d7",
       light: "#e5fafb",
@@ -15,12 +20,6 @@ const theme = createTheme({
       main: "#fb9678",
       light: "#fcf1ed",
       dark: "#e67e5f",
-      contrastText: "#ffffff",
-    },
-    success: {
-      main: "#00c292",
-
-      dark: "#00964b",
       contrastText: "#ffffff",
     },
     danger: {
@@ -38,7 +37,6 @@ const theme = createTheme({
     },
     warning: {
       main: "#fec90f",
-
       dark: "#dcb014",
       contrastText: "#ffffff",
     },

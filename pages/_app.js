@@ -131,10 +131,10 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// Make Dashboard
-// Add weather app in admin panel & a add product page
+// Add product page
 // Change city to district name, Add "admin" in User model ro verify if admin
 // Move components folder into src folder components or vice versa
+// Make components/dashboard
 // Token expired then logout
 // Send reset email
 // getUser name problem with prod and dev for getting data

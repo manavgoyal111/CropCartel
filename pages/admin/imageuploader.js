@@ -32,37 +32,6 @@ const itemData = [
 		rows: 2,
 		cols: 1,
 	},
-	{
-		img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
-		title: "Coffee",
-		rows: 2,
-		cols: 1,
-	},
-	{
-		img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
-		title: "Hats",
-		rows: 2,
-		cols: 1,
-	},
-	{
-		img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
-		title: "Honey",
-		author: "@arwinneil",
-		rows: 2,
-		cols: 1,
-	},
-	{
-		img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
-		title: "Basketball",
-		rows: 2,
-		cols: 1,
-	},
-	{
-		img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
-		title: "Fern",
-		rows: 2,
-		cols: 1,
-	},
 ];
 
 const ImageUploader = () => {
@@ -70,7 +39,7 @@ const ImageUploader = () => {
 		<>
 			<Head>
 				<title>Image Uploader | Dashboard | CropCartel</title>
-				<meta name="description" content="CropCartel Dashboard Image Uploader" />
+				<meta name="description" content="CropCartel Dashboard page to upload Image" />
 			</Head>
 
 			<ThemeProvider theme={theme}>

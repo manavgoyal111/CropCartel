@@ -1,18 +1,18 @@
 import React from "react";
 import Image from "next/image";
+import NextLink from "next/link";
 import {
 	Typography,
-	Box,
 	Table,
 	TableBody,
 	TableCell,
 	TableHead,
 	TableRow,
-	Chip,
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 
 const Products = ({ products }) => {
+	console.log(products);
 	return (
 		<BaseCard title="All Products">
 			<Table
@@ -23,14 +23,14 @@ const Products = ({ products }) => {
 			>
 				<TableHead>
 					<TableRow>
-						<TableCell>
+						<TableCell align="left">
 							<Typography color="textSecondary" variant="h6">
 								Title
 							</Typography>
 						</TableCell>
 						<TableCell>
 							<Typography color="textSecondary" variant="h6">
-								Slug
+								Time Added
 							</Typography>
 						</TableCell>
 						<TableCell>
@@ -40,7 +40,7 @@ const Products = ({ products }) => {
 						</TableCell>
 						<TableCell>
 							<Typography color="textSecondary" variant="h6">
-								Size/Color
+								Size/Color/Qty
 							</Typography>
 						</TableCell>
 						<TableCell align="right">
@@ -54,23 +54,27 @@ const Products = ({ products }) => {
 					{products.map((product) => (
 						<TableRow key={product._id}>
 							<TableCell>
-								<Typography
-									sx={{
-										fontWeight: "600",
-									}}
-								>
-									{product.title}
-								</Typography>
+								<NextLink href={`/product/${product.slug}`}>
+									<a className="flex justify-center font-bold">
+										<Typography
+											sx={{
+												fontWeight: "600",
+											}}
+										>
+											{product.title} ({product.category})
+										</Typography>
+									</a>
+								</NextLink>
 							</TableCell>
 							<TableCell>
-								<Typography>{product.slug}</Typography>
+								<Typography>{product.updatedAt.slice(0, 10)}</Typography>
 							</TableCell>
 							<TableCell>
 								<Image src={product.img} alt="Product" height={40} width={40} />
 							</TableCell>
 							<TableCell>
 								<Typography>
-									{product.size}/{product.color}
+									{product.size}/{product.color}/{product.availableQty}
 								</Typography>
 							</TableCell>
 							<TableCell align="right">

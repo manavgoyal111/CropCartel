@@ -10,7 +10,7 @@ const AllOrders = () => {
 		<>
 			<Head>
 				<title>All Orders | Dashboard | CropCartel</title>
-				<meta name="description" content="CropCartel Dashboard All Orders" />
+				<meta name="description" content="CropCartel Dashboard page to show all Orders" />
 			</Head>
 
 			<ThemeProvider theme={theme}>

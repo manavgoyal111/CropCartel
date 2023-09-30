@@ -1,18 +1,18 @@
 import Head from "next/head";
-import mongoose from "mongoose";
 import { ThemeProvider } from "@mui/material/styles";
 import { Grid } from "@mui/material";
+import mongoose from "mongoose";
 import Product from "../../models/Product";
+import theme from "../../src/theme/theme";
 import Products from "../../src/components/dashboard/Products";
 import FullLayout from "../../src/layouts/FullLayout";
-import theme from "../../src/theme/theme";
 
 const AllProducts = ({ products }) => {
 	return (
 		<>
 			<Head>
 				<title>All Products | Dashboard | CropCartel</title>
-				<meta name="description" content="CropCartel Dashboard show All Products" />
+				<meta name="description" content="CropCartel Dashboard page to show all Products" />
 			</Head>
 
 			<ThemeProvider theme={theme}>
