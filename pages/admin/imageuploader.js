@@ -2,9 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { ThemeProvider } from "@mui/material/styles";
 import { Grid, ImageList, ImageListItem } from "@mui/material";
-import BaseCard from "../../src/components/baseCard/BaseCard";
-import FullLayout from "../../src/layouts/FullLayout";
-import theme from "../../src/theme/theme";
+import BaseCard from "../../admin/components/baseCard/BaseCard";
+import FullLayout from "../../admin/layouts/FullLayout";
+import theme from "../../admin/theme/theme";
 
 function srcset(image, size, rows = 1, cols = 1) {
 	return {

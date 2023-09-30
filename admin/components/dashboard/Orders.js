@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import NextLink from "next/link";
 import {
 	Typography,
@@ -11,10 +10,9 @@ import {
 } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 
-const Products = ({ products }) => {
-	console.log(products);
+const Orders = ({ orders }) => {
 	return (
-		<BaseCard title="All Products">
+		<BaseCard title="All Orders">
 			<Table
 				aria-label="simple table"
 				sx={{
@@ -25,43 +23,43 @@ const Products = ({ products }) => {
 					<TableRow>
 						<TableCell align="left">
 							<Typography color="textSecondary" variant="h6">
-								Title
+								Name
 							</Typography>
 						</TableCell>
 						<TableCell>
 							<Typography color="textSecondary" variant="h6">
-								Time Added
+								Created At
 							</Typography>
 						</TableCell>
 						<TableCell>
 							<Typography color="textSecondary" variant="h6">
-								Image
+								Delivery Status
 							</Typography>
 						</TableCell>
 						<TableCell>
 							<Typography color="textSecondary" variant="h6">
-								Size/Color/Qty
+								Payment Status
 							</Typography>
 						</TableCell>
 						<TableCell align="right">
 							<Typography color="textSecondary" variant="h6">
-								Price
+								Amount
 							</Typography>
 						</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{products.map((product) => (
+					{orders.map((product) => (
 						<TableRow key={product._id}>
 							<TableCell>
-								<NextLink href={`/product/${product.slug}`}>
+								<NextLink href={`/order?id=${product._id}`}>
 									<a className="flex justify-center font-bold">
 										<Typography
 											sx={{
 												fontWeight: "600",
 											}}
 										>
-											{product.title} ({product.category})
+											{product.name}
 										</Typography>
 									</a>
 								</NextLink>
@@ -70,15 +68,13 @@ const Products = ({ products }) => {
 								<Typography>{product.updatedAt.slice(0, 10)}</Typography>
 							</TableCell>
 							<TableCell>
-								<Image src={product.img} alt="Product" height={40} width={40} />
+								<Typography>{product.deliveryStatus}</Typography>
 							</TableCell>
 							<TableCell>
-								<Typography>
-									{product.size}/{product.color}/{product.availableQty}
-								</Typography>
+								<Typography>{product.status}</Typography>
 							</TableCell>
 							<TableCell align="right">
-								<Typography variant="h6">₹{product.price}</Typography>
+								<Typography variant="h6">₹{product.amount / 100}</Typography>
 							</TableCell>
 						</TableRow>
 					))}
@@ -88,4 +84,4 @@ const Products = ({ products }) => {
 	);
 };
 
-export default Products;
+export default Orders;

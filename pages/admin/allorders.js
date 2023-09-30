@@ -1,11 +1,13 @@
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
 import { Grid } from "@mui/material";
-import Products from "../../src/components/dashboard/Products";
-import FullLayout from "../../src/layouts/FullLayout";
-import theme from "../../src/theme/theme";
+import mongoose from "mongoose";
+import Order from "../../models/Order";
+import theme from "../../admin/theme/theme";
+import Orders from "../../admin/components/dashboard/Orders";
+import FullLayout from "../../admin/layouts/FullLayout";
 
-const AllOrders = () => {
+const AllOrders = ({ orders }) => {
 	return (
 		<>
 			<Head>
@@ -16,14 +18,24 @@ const AllOrders = () => {
 			<ThemeProvider theme={theme}>
 				<FullLayout>
 					<Grid container spacing={0}>
-						{/* <Grid item xs={12} lg={12}>
-							<Products />
-						</Grid> */}
+						<Grid item xs={12} lg={12}>
+							<Orders orders={orders} />
+						</Grid>
 					</Grid>
 				</FullLayout>
 			</ThemeProvider>
 		</>
 	);
 };
+
+export async function getServerSideProps(context) {
+	if (!mongoose.connections[0].readyState) {
+		await mongoose.connect(process.env.MONGO_URI);
+	}
+
+	const orders = await Order.find();
+
+	return { props: { orders: JSON.parse(JSON.stringify(orders)) } };
+}
 
 export default AllOrders;

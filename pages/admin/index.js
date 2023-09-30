@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { Grid } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "../../src/theme/theme";
-import BlogCard from "../../src/components/dashboard/BlogCard";
-import SalesOverview from "../../src/components/dashboard/SalesOverview";
-import DailyActivity from "../../src/components/dashboard/DailyActivity";
-import FullLayout from "../../src/layouts/FullLayout";
+import theme from "../../admin/theme/theme";
+import BlogCard from "../../admin/components/dashboard/BlogCard";
+import SalesOverview from "../../admin/components/dashboard/SalesOverview";
+import DailyActivity from "../../admin/components/dashboard/DailyActivity";
+import FullLayout from "../../admin/layouts/FullLayout";
 
 const Index = () => {
 	return (

@@ -1,27 +1,27 @@
 import React from "react";
-import { Card, CardContent, Typography, Button, Grid } from "@mui/material";
 import Image from "next/image";
-import user1 from "../../../assets/images/backgrounds/u2.jpg";
-import user2 from "../../../assets/images/backgrounds/u3.jpg";
-import user3 from "../../../assets/images/backgrounds/u4.jpg";
+import { Card, CardContent, Typography, Button, Grid } from "@mui/material";
+// import user1 from "../../../assets/images/backgrounds/u2.jpg";
+// import user2 from "../../../assets/images/backgrounds/u3.jpg";
+// import user3 from "../../../assets/images/backgrounds/u4.jpg";
 
 const blogs = [
 	{
-		img: user1,
+		// img: user1,
 		title: "Super awesome, Angular 12 is coming soon!",
 		subtitle:
 			"Some quick example text to build on the card title and make up the bulk of the card's content.",
 		btncolor: "error",
 	},
 	{
-		img: user2,
+		// img: user2,
 		title: "Super awesome, Angular 12 is coming soon!",
 		subtitle:
 			"Some quick example text to build on the card title and make up the bulk of the card's content.",
 		btncolor: "warning",
 	},
 	{
-		img: user3,
+		// img: user3,
 		title: "Super awesome, Angular 12 is coming soon!",
 		subtitle:
 			"Some quick example text to build on the card title and make up the bulk of the card's content.",
@@ -49,7 +49,7 @@ const BlogCard = () => {
 							width: "100%",
 						}}
 					>
-						<Image src={blog.img} alt="img" />
+						{/* <Image src={blog.img} alt="img" /> */}
 						<CardContent
 							sx={{
 								paddingLeft: "30px",

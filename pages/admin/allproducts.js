@@ -3,9 +3,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Grid } from "@mui/material";
 import mongoose from "mongoose";
 import Product from "../../models/Product";
-import theme from "../../src/theme/theme";
-import Products from "../../src/components/dashboard/Products";
-import FullLayout from "../../src/layouts/FullLayout";
+import theme from "../../admin/theme/theme";
+import Products from "../../admin/components/dashboard/Products";
+import FullLayout from "../../admin/layouts/FullLayout";
 
 const AllProducts = ({ products }) => {
 	return (

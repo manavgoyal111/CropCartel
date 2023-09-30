@@ -7,18 +7,23 @@ import {
 	TextField,
 	Button,
 } from "@mui/material";
-import BaseCard from "../../src/components/baseCard/BaseCard";
-import FullLayout from "../../src/layouts/FullLayout";
-import theme from "../../src/theme/theme";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BaseCard from "../../admin/components/baseCard/BaseCard";
+import FullLayout from "../../admin/layouts/FullLayout";
+import theme from "../../admin/theme/theme";
 
 const AddProd = () => {
 	const [form, setForm] = useState({
 		title: "",
 		slug: "",
 		desc: "",
-		price: "",
-		category: "",
 		img: "",
+		category: "",
+		price: "",
+		availableQty: "",
+		size: "",
+		color: "",
 	});
 
 	const onChange = (e) => {
@@ -38,9 +43,12 @@ const AddProd = () => {
 				title: form.title,
 				slug: form.slug,
 				desc: form.desc,
-				price: form.price,
-				category: form.category,
 				img: form.img,
+				category: form.category,
+				price: form.price,
+				availableQty: form.availableQty,
+				size: form.size,
+				color: form.color,
 			})
 		};
 
@@ -48,14 +56,36 @@ const AddProd = () => {
 		const response = await res.json();
 
 		if (response.success) {
+			toast.success("Product Added!", {
+				position: "top-left",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
 			setForm({
 				title: "",
 				slug: "",
 				desc: "",
-				price: "",
-				category: "",
 				img: "",
+				category: "",
+				price: "",
+				availableQty: "",
+				size: "",
+				color: "",
 			})
+		} else {
+			toast.error("Error Occurred!", {
+				position: "top-left",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
 		}
 	};
 
@@ -66,12 +96,24 @@ const AddProd = () => {
 				<meta name="description" content="Admin Dashboard page for adding Product" />
 			</Head>
 
+			<ToastContainer
+				position="top-left"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
+
 			<ThemeProvider theme={theme}>
 				<FullLayout>
 					<Grid container spacing={0}>
 						<Grid item xs={12} lg={12}>
-							<BaseCard title="Add a new product" className="text-green-500">
-								<Stack spacing={3}>
+							<BaseCard title="Add a new Product" className="text-green-500">
+								<Stack spacing={1}>
 									<TextField
 										value={form.title}
 										onChange={onChange}
@@ -87,11 +129,12 @@ const AddProd = () => {
 										variant="outlined"
 									/>
 									<TextField
-										value={form.price}
+										value={form.desc}
 										onChange={onChange}
-										name="price"
-										label="Price"
-										variant="outlined"
+										name="desc"
+										label="Description"
+										multiline
+										rows={3}
 									/>
 									<TextField
 										value={form.category}
@@ -101,19 +144,55 @@ const AddProd = () => {
 										variant="outlined"
 									/>
 									<TextField
+										value={form.price}
+										onChange={onChange}
+										name="price"
+										label="Price"
+										variant="outlined"
+									/>
+									<TextField
+										value={form.availableQty}
+										onChange={onChange}
+										name="availableQty"
+										label="Available Quantity"
+										variant="outlined"
+									/>
+									<TextField
+										value={form.size}
+										onChange={onChange}
+										name="size"
+										label="Size"
+										variant="outlined"
+									/>
+									<TextField
+										value={form.color}
+										onChange={onChange}
+										name="color"
+										label="Color"
+										variant="outlined"
+									/>
+									{/* <Button
+										variant="contained"
+										component="label"
+										sx={{ display: form.img !== "" ? "none" : "block" }}
+									>
+										Upload Image
+										<input
+											type="file"
+											value={form.img}
+											onChange={onChange}
+											name="img"
+											label="Image"
+											hidden
+										/>
+									</Button> */}
+									<TextField
 										value={form.img}
 										onChange={onChange}
 										name="img"
 										label="Image"
 										variant="outlined"
-									/>
-									<TextField
-										value={form.desc}
-										onChange={onChange}
-										name="desc"
-										label="Desc"
-										multiline
-										rows={3}
+									// sx={{ display: form.img === "" ? "none" : "" }}
 									/>
 								</Stack>
 								<br />

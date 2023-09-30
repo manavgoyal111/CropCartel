@@ -17,7 +17,7 @@ const Menuitems = [
 	{
 		title: "Add Product",
 		icon: "plus-circle",
-		href: "/admin/add",
+		href: "/admin/addproduct",
 	},
 	{
 		title: "Weather App",
