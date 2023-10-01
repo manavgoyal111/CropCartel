@@ -13,8 +13,8 @@ const handler = async (req, res) => {
 		const token = req.body.token;
 		const userData = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
 		const userDbData = await User.findOne({ email: userData.email });
-		const { name, email, address, pincode, phone } = userDbData;
-		res.status(200).json({ success: true, data: { name, email, address, pincode, phone } });
+		const { name, email, address, pincode, phone, admin } = userDbData;
+		res.status(200).json({ success: true, data: { name, email, address, pincode, phone, admin } });
 	} catch (err) {
 		res.status(400).json({ success: false, data: err });
 	}

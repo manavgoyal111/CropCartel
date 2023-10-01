@@ -17,6 +17,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 
 	const [dropdown, setDropdown] = useState(false);
 	const [sidebar, setSidebar] = useState(false);
+	const [isAdmin, setIsAdmin] = useState(false)
 
 	useEffect(() => {
 		// Sidebar open by default if cart is not empty
@@ -40,6 +41,25 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			setSidebar(false);
 		}
 	}, [cart]);
+
+	useEffect(() => {
+		const getUser = async () => {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ token: localStorage.getItem("token") }),
+			});
+			const userRes = await res.json();
+			if (userRes.success) {
+				setIsAdmin(userRes.data.admin);
+			} else {
+				console.log(userRes.data);
+			}
+		};
+		getUser();
+	}, [router]);
 
 	const toggleCart = () => {
 		setSidebar(!sidebar);
@@ -74,13 +94,13 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 										</li>
 									</a>
 								</Link>
-								<Link href="/admin">
+								{isAdmin && <Link href="/admin">
 									<a>
 										<li className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer">
 											Admin
 										</li>
 									</a>
-								</Link>
+								</Link>}
 								<li
 									onClick={logout}
 									className="py-1 text-sm hover:text-green-700 font-bold cursor-pointer"

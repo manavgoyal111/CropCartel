@@ -131,10 +131,10 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// Change city to district name, Add "admin" in User model ro verify if admin
 // Token expired then logout
 // Send reset email
 // /contact => Make Contact from send a mail
+// Sales overview considers last year sales also
 // getUser name problem with prod and dev for getting data
 
 // Color Schema:

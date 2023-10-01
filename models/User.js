@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
 		address: { type: String, default: "" },
 		pincode: { type: String, default: "" },
 		phone: { type: String, default: "" },
+		admin: { type: Boolean, default: false }
 	},
 	{ timestamps: true }
 );
