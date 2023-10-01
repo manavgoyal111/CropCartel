@@ -11,6 +11,15 @@ import {
 import BaseCard from "../baseCard/BaseCard";
 
 const Orders = ({ orders }) => {
+	const formatDate = (value) => {
+		return new Date(value).toLocaleDateString("en-IN", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		})
+	}
+	
 	return (
 		<BaseCard title="All Orders">
 			<Table
@@ -65,7 +74,7 @@ const Orders = ({ orders }) => {
 								</NextLink>
 							</TableCell>
 							<TableCell>
-								<Typography>{product.updatedAt.slice(0, 10)}</Typography>
+								<Typography>{formatDate(product.updatedAt)}</Typography>
 							</TableCell>
 							<TableCell>
 								<Typography>{product.deliveryStatus}</Typography>

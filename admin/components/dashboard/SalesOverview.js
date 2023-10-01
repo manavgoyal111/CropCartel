@@ -1,11 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const SalesOverview = () => {
+const SalesOverview = ({ orders }) => {
+	const [seriessalesoverview, setSeriessalesoverview] = useState([{
+		name: "Sale",
+		data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	}])
+
+	useEffect(() => {
+		for (let i = 0; i < 10; i++) {
+			setSeriessalesoverview((prevState) => [
+				{
+					...prevState[0],
+					data: prevState[0].data.map((value, index) =>
+						index === i ? 0 : value
+					),
+				},
+			])
+		}
+
+		for (let i = 0; i < 10; i++) {
+			let element = orders[i];
+			if (element !== undefined) {
+				setSeriessalesoverview((prevState) => [
+					{
+						...prevState[0],
+						data: prevState[0].data.map((value, index) =>
+							index === formatDate(element.updatedAt) ? value + element.amount / 100 : value
+						),
+					},
+				])
+			}
+		}
+	}, [])
+
+	const formatDate = (value) => {
+		return new Date(value).getMonth("en-IN", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		})
+	}
+
 	const optionssalesoverview = {
 		grid: {
 			show: true,
@@ -26,7 +67,7 @@ const SalesOverview = () => {
 			},
 		},
 
-		colors: ["#fb9678", "#03c9d7"],
+		colors: ["#3CB371", "#87CEEB"],
 		fill: {
 			type: "solid",
 			opacity: 1,
@@ -76,7 +117,7 @@ const SalesOverview = () => {
 		yaxis: {
 			show: true,
 			min: 100,
-			max: 400,
+			max: 2000,
 			tickAmount: 3,
 			labels: {
 				style: {
@@ -94,16 +135,7 @@ const SalesOverview = () => {
 			theme: "dark",
 		},
 	};
-	const seriessalesoverview = [
-		{
-			name: "Ample Admin",
-			data: [355, 390, 300, 350, 390, 180, 355, 390, 300, 350, 390, 180],
-		},
-		{
-			name: "Pixel Admin",
-			data: [280, 250, 325, 215, 250, 310, 280, 250, 325, 215, 250, 310],
-		},
-	];
+
 	return (
 		<BaseCard title="Sales Overview">
 			<Chart

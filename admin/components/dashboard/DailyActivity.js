@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -8,40 +8,48 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import BaseCard from "../baseCard/BaseCard";
 
-const activities = [
-	{
+const DailyActivity = ({ orders }) => {
+	const [activities, setActivities] = useState([{
 		time: "09.50",
-		color: "success.main",
 		text: "Meeting with John",
-	},
-	{
-		time: "09.46",
-		color: "secondary.main",
-		text: "Payment received from John Doe of $385.90",
-	},
-	{
-		time: "09.47",
-		color: "primary.main",
-		text: "Project Meeting",
-	},
-	{
-		time: "09.48",
-		color: "warning.main",
-		text: "New Sale recorded #ML-3467",
-	},
-	{
-		time: "09.49",
-		color: "error.main",
-		text: "Payment was made of $64.95 to Michael Anderson",
-	},
-];
+	},])
 
-const DailyActivity = () => {
+	const formatDate = (value) => {
+		const options = {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "numeric",
+			minute: "numeric",
+			second: "numeric",
+			timeZoneName: "short",
+		};
+
+		return new Date(value).toLocaleString("en-IN", options);
+	}
+
+	useEffect(() => {
+		setActivities([])
+		for (let i = 0; i < orders.length && i < 10; i++) {
+			let element = orders[i];
+			if (element !== undefined) {
+				setActivities((prevState) => [
+					...prevState,
+					{
+						time: formatDate(element.updatedAt),
+						text: element.email
+					},
+				])
+			}
+		}
+	}, [])
+
 	return (
 		<BaseCard title="Daily Activity">
 			<Timeline
 				sx={{
-					p: 0,
+					paddingLeft: 5,
 				}}
 			>
 				{activities.map((activity) => (
@@ -51,6 +59,8 @@ const DailyActivity = () => {
 								fontSize: "12px",
 								fontWeight: "700",
 								flex: "0",
+								marginRight: 5,
+								minWidth: "350px",
 							}}
 						>
 							{activity.time}
@@ -59,7 +69,7 @@ const DailyActivity = () => {
 							<TimelineDot
 								variant="outlined"
 								sx={{
-									borderColor: activity.color,
+									borderColor: "success.main",
 								}}
 							/>
 							<TimelineConnector />
