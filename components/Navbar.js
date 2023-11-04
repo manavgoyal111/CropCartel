@@ -17,7 +17,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 
 	const [dropdown, setDropdown] = useState(false);
 	const [sidebar, setSidebar] = useState(false);
-	const [isAdmin, setIsAdmin] = useState(false)
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	useEffect(() => {
 		// Sidebar open by default if cart is not empty
@@ -59,8 +59,6 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			const userRes = await res.json();
 			if (userRes.success) {
 				setIsAdmin(userRes.data.admin);
-			} else {
-				// console.log(userRes.data);
 			}
 		};
 		getUser();

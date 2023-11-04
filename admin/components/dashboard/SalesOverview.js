@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, Select, MenuItem } from "@mui/material";
 import BaseCard from "../baseCard/BaseCard";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const SalesOverview = ({ orders }) => {
+	const [selectedData, setSelectedData] = useState([]);
+	const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 	const [seriessalesoverview, setSeriessalesoverview] = useState([{
 		name: "Sale",
 		data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	}])
 
 	useEffect(() => {
+		updateDataForYear(selectedYear);
+		setSeriessalesoverview([{
+			name: "Sale",
+			data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		}])
+
 		for (let i = 0; i < 10; i++) {
 			setSeriessalesoverview((prevState) => [
 				{
@@ -24,7 +32,7 @@ const SalesOverview = ({ orders }) => {
 		}
 
 		for (let i = 0; i < 10; i++) {
-			let element = orders[i];
+			let element = selectedData[i];
 			if (element !== undefined) {
 				setSeriessalesoverview((prevState) => [
 					{
@@ -36,7 +44,16 @@ const SalesOverview = ({ orders }) => {
 				])
 			}
 		}
-	}, [])
+	}, [selectedYear, selectedData])
+
+	const updateDataForYear = (year) => {
+		// console.log(Number(year), selectedData, orders);
+		selectedData = orders.filter((order) => {
+			const createdYear = new Date(order.createdAt).getFullYear();
+			console.log(createdYear);
+			return createdYear === Number(year);
+		});
+	};
 
 	const formatDate = (value) => {
 		return new Date(value).getMonth("en-IN", {
@@ -138,6 +155,16 @@ const SalesOverview = ({ orders }) => {
 
 	return (
 		<BaseCard title="Sales Overview">
+			<Select
+				value={selectedYear}
+				onChange={(e) => setSelectedYear(e.target.value)}
+			>
+				<MenuItem value="2024">2024</MenuItem>
+				<MenuItem value="2023">2023</MenuItem>
+				<MenuItem value="2022">2022</MenuItem>
+				<MenuItem value="2021">2021</MenuItem>
+			</Select>
+
 			<Chart
 				options={optionssalesoverview}
 				series={seriessalesoverview}

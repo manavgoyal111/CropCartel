@@ -130,8 +130,5 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// Online page is using diff database ig as test account is not admin
-// Sales overview considers last year sales also
-// Token expired then logout
-// Send reset email
+// Forgot password email service
 // getUser name problem with prod and dev for getting data

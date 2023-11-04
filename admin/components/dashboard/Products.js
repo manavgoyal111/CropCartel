@@ -66,7 +66,7 @@ const Products = ({ products }) => {
 								</NextLink>
 							</TableCell>
 							<TableCell>
-								<Typography>{product.updatedAt.slice(0, 10)}</Typography>
+								<Typography>{product.updatedAt ? product.updatedAt.slice(0, 10) : ""}</Typography>
 							</TableCell>
 							<TableCell>
 								<Image src={product.img} alt="Product" height={40} width={40} />

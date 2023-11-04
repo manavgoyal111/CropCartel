@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { ThemeProvider } from "@mui/material/styles";
 import {
 	Grid,
@@ -14,6 +15,8 @@ import FullLayout from "../../admin/layouts/FullLayout";
 import theme from "../../admin/theme/theme";
 
 const AddProd = () => {
+	const router = useRouter();
+
 	const [form, setForm] = useState({
 		title: "",
 		slug: "",
@@ -25,6 +28,32 @@ const AddProd = () => {
 		size: "",
 		color: "",
 	});
+
+	useEffect(() => {
+		const getUser = async () => {
+			const res = await fetch(
+				process.env.NODE_ENV === "development"
+					? `${process.env.NEXT_PUBLIC_HOST}/api/getuser`
+					: `${process.env.NEXT_PUBLIC_HOST}/api/getUser`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ token: localStorage.getItem("token") }),
+				}
+			);
+			const userRes = await res.json();
+			if (userRes.success) {
+				if (!userRes.data.admin) {
+					router.push("/");
+				}
+			} else {
+				router.push("/");
+			}
+		};
+		getUser();
+	}, []);
 
 	const onChange = (e) => {
 		setForm({ ...form, [e.target.name]: e.target.value });

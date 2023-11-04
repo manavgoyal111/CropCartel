@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,7 +37,7 @@ const Forgot = () => {
 			body: JSON.stringify({ email, sendMail: true }),
 		});
 		let res = await a.json();
-		console.log(res);
+		// console.log(res);
 		if (res.success) {
 			toast.success(`Password reset instructions have been sent to your mail`, {
 				position: "top-left",
@@ -134,9 +133,6 @@ const Forgot = () => {
 			<div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 				<div className="max-w-md w-full space-y-8">
 					<div>
-						<div className="mx-auto h-12 w-auto flex justify-center">
-							<Image src="/2.png" alt="CropCartel" height={50} width={50} />
-						</div>
 						<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
 							Forgot Password
 						</h2>
