@@ -4,7 +4,6 @@ import LoadingBar from "react-top-loading-bar";
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { SchemaType } from "mongoose";
 
 const MyApp = ({ Component, pageProps }) => {
 	const router = useRouter();
@@ -131,16 +130,8 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
+// Online page is using diff database ig as test account is not admin
+// Sales overview considers last year sales also
 // Token expired then logout
 // Send reset email
-// /contact => Make Contact from send a mail
-// Sales overview considers last year sales also
 // getUser name problem with prod and dev for getting data
-
-// Color Schema:
-// Green (#3CB371)
-// Golden Yellow (#FFD700)
-// Earthy Brown (#8B4513)
-// Harvest Orange (#FFA500)
-// Sky Blue (#87CEEB)
-// Fresh White (#FFFFFF):

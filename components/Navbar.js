@@ -55,7 +55,7 @@ const Navbar = ({ user, logout, cart, addToCart, removeFromCart, clearCart, subT
 			if (userRes.success) {
 				setIsAdmin(userRes.data.admin);
 			} else {
-				console.log(userRes.data);
+				// console.log(userRes.data);
 			}
 		};
 		getUser();
