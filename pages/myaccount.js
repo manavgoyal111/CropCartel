@@ -18,13 +18,18 @@ const MyAccount = () => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ token: localStorage.getItem("token") }),
-			});
+			const res = await fetch(
+				process.env.NODE_ENV === "development"
+					? `${process.env.NEXT_PUBLIC_HOST}/api/getuser`
+					: `${process.env.NEXT_PUBLIC_HOST}/api/getUser`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ token: localStorage.getItem("token") }),
+				}
+			);
 			const userRes = await res.json();
 			if (userRes.success) {
 				setEmail(userRes.data.email);
